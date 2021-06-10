@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class MouseyController : MonoBehaviour
 {
-    public float Speed = 0f;
+    public float MaxForwardSpeed = 0f;
+    public float MaxBackwardSpeed = 0f;
 
 
     private CharacterController character;
@@ -27,7 +28,7 @@ public class MouseyController : MonoBehaviour
         if (Mathf.Abs(Input.GetAxis("Vertical")) >0.3f)
         {
             Debug.Log("Going forward");
-            MoveToMake.z += Speed * Input.GetAxis("Vertical");
+            MoveToMake.z += (Input.GetAxis("Vertical") > 0? MaxForwardSpeed : MaxBackwardSpeed) * Input.GetAxis("Vertical");
         }
 
         //add gravity to the speed
@@ -48,6 +49,6 @@ public class MouseyController : MonoBehaviour
 
     private void MakeMoveAnim(float speed)
     {
-        character.GetComponent<Animator>().SetFloat("Speed",Mathf.Clamp(speed, 0, 3f));
+        character.GetComponent<Animator>().SetFloat("Speed",Mathf.Clamp(speed, -MaxBackwardSpeed, MaxForwardSpeed));
     }
 }
