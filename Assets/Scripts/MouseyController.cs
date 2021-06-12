@@ -39,6 +39,12 @@ namespace alexshko.colamazle.Entities
 
         private void Update()
         {
+            CalcMovementToMake();
+            CalcCamReferenceObject();
+        }
+
+        private void CalcMovementToMake()
+        {
             MoveToMake = Vector3.zero;
 
             //take the Vertical input axis. and also the vertical valuue of the joystick:
@@ -46,7 +52,13 @@ namespace alexshko.colamazle.Entities
             if (Mathf.Abs(InputVal) > 0.05f)
             {
                 Debug.Log("Going forward");
-                MoveToMake.z += (InputVal > 0 ? MaxForwardSpeed : MaxBackwardSpeed) * InputVal;
+                if (CamRefObject.localRotation.eulerAngles.magnitude > 1)
+                {
+                    transform.rotation = CamRefObject.localRotation;
+                    CamRefObject.localRotation = Quaternion.Euler(0, 0, 0);
+                    CameraMoveAngleY = 0;
+                }
+                MoveToMake += (InputVal > 0 ? MaxForwardSpeed : MaxBackwardSpeed) * InputVal *transform.forward;
             }
 
             //add gravity to the speed
@@ -55,8 +67,6 @@ namespace alexshko.colamazle.Entities
                 Debug.Log("Character grounder");
             }
             MoveToMake += character.isGrounded ? Vector3.zero : Physics.gravity;
-
-            CalcCamReferenceObject();
         }
 
         private void CalcCamReferenceObject()
