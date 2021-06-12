@@ -378,8 +378,8 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 417933326}
-  m_Follow: {fileID: 417933326}
+  m_LookAt: {fileID: 1931656187}
+  m_Follow: {fileID: 1931656187}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 5
@@ -653,12 +653,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2742700650381655855, guid: c1f9ed3e402ecd84dade11136e64183a,
     type: 3}
   m_PrefabInstance: {fileID: 1576712082}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &417933326 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7429478091370798464, guid: 0eeeacd35b7223f4298a0d4879057490,
-    type: 3}
-  m_PrefabInstance: {fileID: 6958192863754028913}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &482959980
 PrefabInstance:
@@ -1713,6 +1707,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1f9ed3e402ecd84dade11136e64183a, type: 3}
+--- !u!4 &1931656187 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1871344776907369750, guid: 0eeeacd35b7223f4298a0d4879057490,
+    type: 3}
+  m_PrefabInstance: {fileID: 6958192863754028913}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2003068722
 PrefabInstance:
   m_ObjectHideFlags: 0
