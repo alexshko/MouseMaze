@@ -50,7 +50,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     {
         foreach (Touch cur in Input.touches)
         {
-            if ((cur.phase != TouchPhase.Ended) && (cur.phase != TouchPhase.Canceled) && Vector2.Distance(cur.position, baseRect.position) < baseRect.sizeDelta.magnitude)
+            if ((cur.phase != TouchPhase.Ended) && (cur.phase != TouchPhase.Canceled) && baseRect.rect.Contains(cur.position))
             {
                 return cur.fingerId;
             }

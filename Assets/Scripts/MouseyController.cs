@@ -18,6 +18,12 @@ namespace alexshko.colamazle.Entities
         private CharacterController character;
         private Vector3 MoveToMake;
         private float CameraMoveAngleY = 0;
+        private bool isCameraMove;
+        private string PhaseMove;
+        private Vector2 TouchPos;
+        private Vector2 fingerMove;
+        private int JoystickTouchId;
+        private int TouchID;
 
         private void Start()
         {
@@ -57,17 +63,21 @@ namespace alexshko.colamazle.Entities
         {
             //added by alexshko:
             //Android phone:
-            bool isCameraMove = (GameController.Instance.JoystickIsTouching && Input.touchCount > 1) || (!GameController.Instance.JoystickIsTouching && Input.touchCount > 0);
+            isCameraMove = (GameController.Instance.JoystickIsTouching && Input.touchCount > 1) || (!GameController.Instance.JoystickIsTouching && Input.touchCount > 0);
             if (isCameraMove)
             {
                 foreach (Touch curTouch in Input.touches)
                 {
+                    TouchID = curTouch.fingerId;
+                    JoystickTouchId = GameController.Instance.JoystickTouchId;
                     if (curTouch.fingerId != GameController.Instance.JoystickTouchId)
                     {
-                        if ((curTouch.phase == TouchPhase.Moved || curTouch.phase == TouchPhase.Stationary) && curTouch.position.x > 512 && curTouch.position.y > 512)
+                        PhaseMove = curTouch.phase.ToString();
+                        TouchPos = curTouch.position;
+                        if ((curTouch.phase == TouchPhase.Moved || curTouch.phase == TouchPhase.Stationary) && curTouch.position.x > 10 && curTouch.position.y > 10)
                         {
-                            Vector2 fingerMove = curTouch.deltaPosition;
-                            CameraMoveAngleY += Mathf.Clamp(fingerMove.x, -1, 1) * horizontalAimingSpeed * 0.5f;
+                            fingerMove = curTouch.deltaPosition;
+                            CameraMoveAngleY += Mathf.Clamp(fingerMove.x, -1, 1) * horizontalAimingSpeed * 0.5f * Time.deltaTime;
                             //angleV += Mathf.Clamp(fingerMove.y, -1, 1) * verticalAimingSpeed * 0.5f;
                             break;
                         }
