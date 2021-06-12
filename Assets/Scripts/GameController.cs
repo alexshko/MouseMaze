@@ -12,9 +12,15 @@ namespace alexshko.colamazle.core
         public float JoystickValue
         {
             get => JoystickPref.Vertical;
-           
         }
-
+        public int JoystickTouchId
+        {
+            get => JoystickPref.TouchID;
+        }
+        public bool JoystickIsTouching
+        {
+            get => JoystickPref.isTouching;
+        }
         private void Awake()
         {
             Instance = this;

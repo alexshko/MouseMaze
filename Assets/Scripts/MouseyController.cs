@@ -1,4 +1,5 @@
 ﻿using alexshko.colamazle.core;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Animations;
@@ -10,10 +11,13 @@ namespace alexshko.colamazle.Entities
     {
         public float MaxForwardSpeed = 0f;
         public float MaxBackwardSpeed = 0f;
+        public int horizontalAimingSpeed = 6;
+        public Transform CamRefObject;
 
 
         private CharacterController character;
         private Vector3 MoveToMake;
+        private float CameraMoveAngleY = 0;
 
         private void Start()
         {
@@ -22,6 +26,8 @@ namespace alexshko.colamazle.Entities
             {
                 Debug.LogError("missing CharacterController");
             }
+            CameraMoveAngleY = 0;
+            MoveToMake = Vector3.zero;
 
         }
 
@@ -43,9 +49,46 @@ namespace alexshko.colamazle.Entities
                 Debug.Log("Character grounder");
             }
             MoveToMake += character.isGrounded ? Vector3.zero : Physics.gravity;
+
+            CalcCamReferenceObject();
+        }
+
+        private void CalcCamReferenceObject()
+        {
+            //added by alexshko:
+            //Android phone:
+            bool isCameraMove = (GameController.Instance.JoystickIsTouching && Input.touchCount > 1) || (!GameController.Instance.JoystickIsTouching && Input.touchCount > 0);
+            if (isCameraMove)
+            {
+                foreach (Touch curTouch in Input.touches)
+                {
+                    if (curTouch.fingerId != GameController.Instance.JoystickTouchId)
+                    {
+                        if ((curTouch.phase == TouchPhase.Moved || curTouch.phase == TouchPhase.Stationary) && curTouch.position.x > 512 && curTouch.position.y > 512)
+                        {
+                            Vector2 fingerMove = curTouch.deltaPosition;
+                            CameraMoveAngleY += Mathf.Clamp(fingerMove.x, -1, 1) * horizontalAimingSpeed * 0.5f;
+                            //angleV += Mathf.Clamp(fingerMove.y, -1, 1) * verticalAimingSpeed * 0.5f;
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
         private void FixedUpdate()
+        {
+            MakeMove();
+            MoveCamRefObject();
+        }
+
+        private void MoveCamRefObject()
+        {
+            //move the reference
+            CamRefObject.rotation = Quaternion.Euler(0, CameraMoveAngleY, 0);
+        }
+
+        private void MakeMove()
         {
             if (MoveToMake != Vector3.zero)
             {

@@ -40,6 +40,24 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     private Vector2 input = Vector2.zero;
 
+    //added by alexshko for android:
+    //boollean is true if the joystick is pressed. also find the touch id.
+    //can't remember the touchid because it can be changed during gameplay.
+    private bool m_isTouching;
+    public bool isTouching { get { return m_isTouching; } }
+    public int TouchID { get { return findTouchFingerId(); } }
+    private int findTouchFingerId()
+    {
+        foreach (Touch cur in Input.touches)
+        {
+            if ((cur.phase != TouchPhase.Ended) && (cur.phase != TouchPhase.Canceled) && Vector2.Distance(cur.position, baseRect.position) < baseRect.sizeDelta.magnitude)
+            {
+                return cur.fingerId;
+            }
+        }
+        return -1;
+    }
+
     protected virtual void Start()
     {
         HandleRange = handleRange;
