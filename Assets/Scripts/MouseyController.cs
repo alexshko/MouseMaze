@@ -28,6 +28,7 @@ namespace alexshko.colamazle.Entities
         private void Update()
         {
             MoveToMake = Vector3.zero;
+
             //take the Vertical input axis. and also the vertical valuue of the joystick:
             float InputVal = Input.GetAxis("Vertical") + GameController.Instance.JoystickValue;
             if (Mathf.Abs(InputVal) > 0.05f)
