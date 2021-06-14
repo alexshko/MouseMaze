@@ -52,10 +52,10 @@ namespace alexshko.colamazle.Entities
             if (Mathf.Abs(InputVal) > 0.05f)
             {
                 Debug.Log("Going forward");
-                if (CamRefObject.localRotation.eulerAngles.magnitude > 1)
+                if (CamRefObject.rotation.eulerAngles.magnitude > 1)
                 {
-                    transform.rotation = CamRefObject.localRotation;
-                    CamRefObject.localRotation = Quaternion.Euler(0, 0, 0);
+                    transform.rotation = CamRefObject.rotation;
+                    CamRefObject.rotation = Quaternion.Euler(0, 0, 0);
                     CameraMoveAngleY = 0;
                 }
                 MoveToMake += (InputVal > 0 ? MaxForwardSpeed : MaxBackwardSpeed) * InputVal *transform.forward;
