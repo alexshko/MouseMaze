@@ -18,6 +18,8 @@ namespace alexshko.colamazle.Entities
         private CharacterController character;
         private Vector3 MoveToMake;
         private float CameraMoveAngleY = 0;
+        private float CharAngleY = 0;
+
         private bool isCameraMove;
         private string PhaseMove;
         private Vector2 TouchPos;
@@ -54,9 +56,10 @@ namespace alexshko.colamazle.Entities
                 Debug.Log("Going forward");
                 if (CamRefObject.rotation.eulerAngles.magnitude > 1)
                 {
-                    transform.rotation = CamRefObject.rotation;
-                    CamRefObject.rotation = Quaternion.Euler(0, 0, 0);
-                    CameraMoveAngleY = 0;
+                    //transform.rotation *= CamRefObject.rotation;
+                    //CamRefObject.rotation = Quaternion.Euler(0, 0, 0);
+                    CharAngleY = CamRefObject.rotation.eulerAngles.y;
+                    //CameraMoveAngleY = 0;
                 }
                 MoveToMake += (InputVal > 0 ? MaxForwardSpeed : MaxBackwardSpeed) * InputVal *transform.forward;
             }
@@ -98,17 +101,29 @@ namespace alexshko.colamazle.Entities
 
         private void FixedUpdate()
         {
-            MakeMove();
-            MoveCamRefObject();
+            TurnCharacter();
+            MoveCharacter();
+            TurnCamRefObject();
         }
 
-        private void MoveCamRefObject()
+        private void TurnCharacter()
+        {
+            if (Quaternion.Angle(transform.rotation, Quaternion.Euler(0, CharAngleY,0)) > 1)
+            {
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0,CharAngleY,0), 5*Time.deltaTime);
+            }
+        }
+
+        private void TurnCamRefObject()
         {
             //move the reference
-            CamRefObject.rotation = Quaternion.Euler(0, CameraMoveAngleY, 0);
+            if (Quaternion.Angle(CamRefObject.rotation, Quaternion.Euler(0,CameraMoveAngleY,0))> 1)
+            {
+                CamRefObject.rotation = Quaternion.Lerp(CamRefObject.rotation, Quaternion.Euler(0, CameraMoveAngleY, 0), 5*Time.deltaTime);
+            }
         }
 
-        private void MakeMove()
+        private void MoveCharacter()
         {
             if (MoveToMake != Vector3.zero)
             {
