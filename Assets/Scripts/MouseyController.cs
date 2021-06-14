@@ -61,7 +61,7 @@ namespace alexshko.colamazle.Entities
                     CharAngleY = CamRefObject.rotation.eulerAngles.y;
                     //CameraMoveAngleY = 0;
                 }
-                MoveToMake += (InputVal > 0 ? MaxForwardSpeed : MaxBackwardSpeed) * InputVal *transform.forward;
+                MoveToMake += (InputVal > 0 ? MaxForwardSpeed : MaxBackwardSpeed) * Mathf.Clamp(InputVal, -1, 1) *transform.forward;
             }
 
             //add gravity to the speed
@@ -129,7 +129,9 @@ namespace alexshko.colamazle.Entities
             {
                 character.Move(MoveToMake * Time.deltaTime);
             }
-            MakeMoveAnim(MoveToMake.z);
+
+            Vector3 MoveToMakeNoGravity = new Vector3(MoveToMake.x, 0, MoveToMake.z);
+            MakeMoveAnim(MoveToMakeNoGravity.magnitude);
         }
 
         private void MakeMoveAnim(float speed)
