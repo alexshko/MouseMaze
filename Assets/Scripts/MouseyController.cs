@@ -21,11 +21,7 @@ namespace alexshko.colamazle.Entities
         private float CharAngleY = 0;
 
         private bool isCameraMove;
-        private string PhaseMove;
-        private Vector2 TouchPos;
-        private Vector2 fingerMove;
-        private int JoystickTouchId;
-        private int TouchID;
+        private Vector2 fingerMoveForCamera;
 
         private void Start()
         {
@@ -81,17 +77,12 @@ namespace alexshko.colamazle.Entities
             {
                 foreach (Touch curTouch in Input.touches)
                 {
-                    TouchID = curTouch.fingerId;
-                    JoystickTouchId = GameController.Instance.JoystickTouchId;
                     if (curTouch.fingerId != GameController.Instance.JoystickTouchId)
                     {
-                        PhaseMove = curTouch.phase.ToString();
-                        TouchPos = curTouch.position;
                         if ((curTouch.phase == TouchPhase.Moved || curTouch.phase == TouchPhase.Stationary) && curTouch.position.x > 200 && curTouch.position.y > 200)
                         {
-                            fingerMove = curTouch.deltaPosition;
-                            CameraMoveAngleY += Mathf.Clamp(fingerMove.x, -1, 1) * horizontalAimingSpeed * 0.5f * Time.deltaTime;
-                            //angleV += Mathf.Clamp(fingerMove.y, -1, 1) * verticalAimingSpeed * 0.5f;
+                            fingerMoveForCamera = curTouch.deltaPosition;
+                            CameraMoveAngleY += Mathf.Clamp(fingerMoveForCamera.x, -1, 1) * horizontalAimingSpeed * Time.deltaTime;
                             break;
                         }
                     }
