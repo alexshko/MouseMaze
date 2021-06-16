@@ -87,7 +87,7 @@ namespace alexshko.colamazle.Entities
                     {
                         PhaseMove = curTouch.phase.ToString();
                         TouchPos = curTouch.position;
-                        if ((curTouch.phase == TouchPhase.Moved || curTouch.phase == TouchPhase.Stationary) && curTouch.position.x > 10 && curTouch.position.y > 10)
+                        if ((curTouch.phase == TouchPhase.Moved || curTouch.phase == TouchPhase.Stationary) && curTouch.position.x > 200 && curTouch.position.y > 200)
                         {
                             fingerMove = curTouch.deltaPosition;
                             CameraMoveAngleY += Mathf.Clamp(fingerMove.x, -1, 1) * horizontalAimingSpeed * 0.5f * Time.deltaTime;
@@ -129,9 +129,11 @@ namespace alexshko.colamazle.Entities
             {
                 character.Move(MoveToMake * Time.deltaTime);
             }
-
+            //calculate the speed of wich to make the run animation:
             Vector3 MoveToMakeNoGravity = new Vector3(MoveToMake.x, 0, MoveToMake.z);
-            MakeMoveAnim(MoveToMakeNoGravity.magnitude);
+            Vector3 MoveToMakeNoGravityLocal = transform.InverseTransformDirection(MoveToMakeNoGravity);
+            float sign = Mathf.Sign(MoveToMakeNoGravityLocal.z);
+            MakeMoveAnim(sign * MoveToMakeNoGravityLocal.magnitude);
         }
 
         private void MakeMoveAnim(float speed)
