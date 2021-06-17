@@ -1,8 +1,4 @@
 ﻿using alexshko.colamazle.core;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 
 namespace alexshko.colamazle.Entities
