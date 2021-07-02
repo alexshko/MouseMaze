@@ -70,6 +70,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Boolean_CE655AC9: 1
     - Boolean_FE7E5F9C: 0
     - Vector1_38D74F45: 2.5
     - Vector1_5362AE17: 3
