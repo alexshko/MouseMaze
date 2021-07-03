@@ -7177,6 +7177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   JoystickPref: {fileID: 1001041550}
+  ScoreRef: {fileID: 987836186}
 --- !u!4 &1500761218
 Transform:
   m_ObjectHideFlags: 0

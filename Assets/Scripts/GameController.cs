@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace alexshko.colamazle.core
 {
@@ -8,6 +9,9 @@ namespace alexshko.colamazle.core
         public static GameController Instance { get; set; }
 
         public DynamicJoystick JoystickPref;
+
+        //reference for the score text:
+        public TMPro.TMP_Text ScoreRef;
 
         public float JoystickValue
         {
@@ -25,5 +29,8 @@ namespace alexshko.colamazle.core
         {
             Instance = this;
         }
+
+        //List of cheese. the cheeses will be added when Enabled (on game start).
+        public List<Transform> CheeseList;
     }
 }
