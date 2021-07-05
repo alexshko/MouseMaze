@@ -9,6 +9,7 @@ namespace alexshko.colamazle.core
         public static GameController Instance { get; set; }
 
         public DynamicJoystick JoystickPref;
+        public Canvas UICanvasRef;
 
         //reference for the score text:
         public TMPro.TMP_Text ScoreRef;
@@ -28,9 +29,22 @@ namespace alexshko.colamazle.core
         private void Awake()
         {
             Instance = this;
+            AdjustScreenSize();
+        }
+
+        private void Start()
+        {
         }
 
         //List of cheese. the cheeses will be added when Enabled (on game start).
         public List<Transform> CheeseList;
+
+        private void AdjustScreenSize()
+        {
+            RectTransform rt = UICanvasRef.GetComponent<RectTransform>();
+            float canvasHeight = rt.rect.height;
+            float desiredCanvasWidth = canvasHeight * Camera.main.aspect;
+            rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, desiredCanvasWidth);
+        }
     }
 }
