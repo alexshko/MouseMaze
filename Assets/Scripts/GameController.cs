@@ -29,7 +29,7 @@ namespace alexshko.colamazle.core
         private void Awake()
         {
             Instance = this;
-            AdjustScreenSize();
+            //AdjustScreenSize();
         }
 
         private void Start()
