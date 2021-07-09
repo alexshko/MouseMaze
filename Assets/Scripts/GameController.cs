@@ -58,7 +58,9 @@ namespace alexshko.colamazle.core
         private void Awake()
         {
             Instance = this;
-            //AdjustScreenSize();
+            Debug.Log("Screen:" + Camera.main.WorldToScreenPoint(UICanvasRef.transform.position));
+
+            AdjustScreenSize();
         }
 
         private void AdjustScreenSize()
@@ -67,6 +69,7 @@ namespace alexshko.colamazle.core
             float canvasHeight = rt.rect.height;
             float desiredCanvasWidth = canvasHeight * Camera.main.aspect;
             rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, desiredCanvasWidth);
+
         }
 
         public void UpdateCheeseUI()
