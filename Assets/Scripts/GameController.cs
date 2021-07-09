@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using alexshko.colamazle.helpers;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace alexshko.colamazle.core
@@ -26,18 +27,39 @@ namespace alexshko.colamazle.core
         {
             get => JoystickPref.isTouching;
         }
+        
+        public int NumberOfCheesesInGame
+        {
+            get => CheeseList.Count;
+        }
+
+
+        //List of cheese. the cheeses will be added when Enabled (on game start).
+
+        private ObservedList<Transform> cheeseList;
+        public ObservedList<Transform> CheeseList
+
+        {
+            get
+            {
+                if (cheeseList == null)
+                {
+                    cheeseList = new ObservedList<Transform>();
+                    cheeseList.OnListChanged = UpdateCheeseUI;
+                }
+                return cheeseList;
+            }
+            set
+            {
+                cheeseList = value;
+            }
+        }
+
         private void Awake()
         {
             Instance = this;
             //AdjustScreenSize();
         }
-
-        private void Start()
-        {
-        }
-
-        //List of cheese. the cheeses will be added when Enabled (on game start).
-        public List<Transform> CheeseList;
 
         private void AdjustScreenSize()
         {
@@ -45,6 +67,11 @@ namespace alexshko.colamazle.core
             float canvasHeight = rt.rect.height;
             float desiredCanvasWidth = canvasHeight * Camera.main.aspect;
             rt.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, desiredCanvasWidth);
+        }
+
+        public void UpdateCheeseUI()
+        {
+            ScoreRef.text = NumberOfCheesesInGame.ToString();
         }
     }
 }
