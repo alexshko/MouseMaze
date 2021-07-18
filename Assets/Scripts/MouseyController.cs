@@ -119,6 +119,7 @@ namespace alexshko.colamazle.Entities
             //calculate the speed of wich to make the run animation:
             Vector3 MoveToMakeNoGravity = new Vector3(MoveToMake.x, 0, MoveToMake.z);
             Vector3 MoveToMakeNoGravityLocal = transform.InverseTransformDirection(MoveToMakeNoGravity);
+            Debug.Log("Run: " + MoveToMakeNoGravityLocal);
             float sign = Mathf.Sign(MoveToMakeNoGravityLocal.z);
             MakeMoveAnim(sign * MoveToMakeNoGravityLocal.magnitude);
         }
