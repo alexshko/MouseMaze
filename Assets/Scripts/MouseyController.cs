@@ -7,6 +7,7 @@ namespace alexshko.colamazle.Entities
     {
         public float MaxForwardSpeed = 0f;
         public float MaxBackwardSpeed = 0f;
+        public float JumpSpeed = 10f;
         public int horizontalAimingSpeed = 6;
         public Transform CamRefObject;
 
@@ -56,12 +57,11 @@ namespace alexshko.colamazle.Entities
                 MoveToMake += (InputVal > 0 ? MaxForwardSpeed : MaxBackwardSpeed) * Mathf.Clamp(InputVal, -1, 1) *transform.forward;
             }
 
-            //add gravity to the speed
-            if (character.isGrounded)
-            {
-                Debug.Log("Character grounder");
-            }
-            MoveToMake += character.isGrounded ? Vector3.zero : Physics.gravity;
+            //multiply gravity by Time.deltaTime to make it into speed:
+            MoveToMake += character.isGrounded ? Vector3.zero : Physics.gravity * Time.deltaTime;
+
+            //if he jumps then add it to the MoveToMake
+            MoveToMake += Input.GetKey("Jump") ? JumpSpeed * transform.up : Vector3.zero;
         }
 
         private void CalcCamReferenceObject()
