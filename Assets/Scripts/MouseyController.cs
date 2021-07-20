@@ -61,6 +61,7 @@ namespace alexshko.colamazle.Entities
             MoveToMake += character.isGrounded ? Vector3.zero : Physics.gravity * Time.deltaTime;
 
             //if he jumps then add it to the MoveToMake
+            //TODO: check this
             MoveToMake += Input.GetKey("Jump") ? JumpSpeed * transform.up : Vector3.zero;
         }
 
