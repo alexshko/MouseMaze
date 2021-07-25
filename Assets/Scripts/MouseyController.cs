@@ -62,7 +62,7 @@ namespace alexshko.colamazle.Entities
 
             //if he jumps then add it to the MoveToMake
             //TODO: check this
-            MoveToMake += Input.GetKey("Jump") ? JumpSpeed * transform.up : Vector3.zero;
+            MoveToMake += Input.GetButton("Jump") ? JumpSpeed * transform.up : Vector3.zero;
         }
 
         private void CalcCamReferenceObject()
