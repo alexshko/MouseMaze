@@ -1716,7 +1716,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 197169276}
   m_LocalRotation: {x: 0.08248053, y: 1e-45, z: -0, w: 0.9965927}
-  m_LocalPosition: {x: 39.52, y: 5.7, z: -14.34}
+  m_LocalPosition: {x: 39.52, y: 5.7, z: -11.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1689713992}
@@ -2416,7 +2416,7 @@ GameObject:
   - component: {fileID: 380927596}
   - component: {fileID: 380927601}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: GateWay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2434,7 +2434,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 0.1, z: 1}
-  m_Center: {x: 0, y: -0.5, z: 0}
+  m_Center: {x: 0, y: -0.1, z: 0}
 --- !u!23 &380927597
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2492,8 +2492,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 380927595}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 39.07079, y: 1.3, z: -8.684399}
-  m_LocalScale: {x: 2, y: 0.5, z: 2}
+  m_LocalPosition: {x: 39.07079, y: 0.773, z: -8.684399}
+  m_LocalScale: {x: 2, y: 1, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
@@ -2510,6 +2510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d86b540fe197c48bd6cd60cfa46106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AffectedGameObject: {fileID: 1672416065}
 --- !u!1 &383598061
 GameObject:
   m_ObjectHideFlags: 0
@@ -11480,7 +11481,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2729632149576666}
   m_LocalRotation: {x: 0.08248053, y: 1e-45, z: 0, w: 0.9965927}
-  m_LocalPosition: {x: 39.52, y: 5.7, z: -14.34}
+  m_LocalPosition: {x: 39.52, y: 5.7, z: -11.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -12238,6 +12239,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5466180242019992281, guid: 0eeeacd35b7223f4298a0d4879057490,
         type: 3}
+      propertyPath: JumpSpeed
+      value: 7.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466180242019992281, guid: 0eeeacd35b7223f4298a0d4879057490,
+        type: 3}
       propertyPath: CamRefObject
       value: 
       objectReference: {fileID: 1931656187}
@@ -12274,7 +12280,7 @@ PrefabInstance:
     - target: {fileID: 7429478091370798464, guid: 0eeeacd35b7223f4298a0d4879057490,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.34
+      value: -5.5
       objectReference: {fileID: 0}
     - target: {fileID: 7429478091370798464, guid: 0eeeacd35b7223f4298a0d4879057490,
         type: 3}

@@ -14,6 +14,9 @@ namespace alexshko.colamazle.Entities
 
         private CharacterController character;
         private Vector3 MoveToMake;
+        private Vector3 gravitySpeed = Vector3.zero;
+        private Vector3 jumpSpeed = Vector3.zero;
+        private bool isJumping = false;
         private float CameraMoveAngleY = 0;
         private float CharAngleY = 0;
 
@@ -29,7 +32,9 @@ namespace alexshko.colamazle.Entities
             }
             CameraMoveAngleY = 0;
             MoveToMake = Vector3.zero;
-
+            gravitySpeed = Vector3.zero;
+            jumpSpeed = Vector3.zero;
+            isJumping = false;
         }
 
         private void Update()
@@ -57,12 +62,23 @@ namespace alexshko.colamazle.Entities
                 MoveToMake += (InputVal > 0 ? MaxForwardSpeed : MaxBackwardSpeed) * Mathf.Clamp(InputVal, -1, 1) *transform.forward;
             }
 
-            //multiply gravity by Time.deltaTime to make it into speed:
-            MoveToMake += character.isGrounded ? Vector3.zero : Physics.gravity * Time.deltaTime;
+            //calculate the speed affected by gravity in this frame and sum it to gravitySpeed:
+            gravitySpeed = character.isGrounded ? Vector3.zero : (gravitySpeed + Physics.gravity * Time.deltaTime);
+            //add to the frame's speed:
+            MoveToMake += gravitySpeed;
 
             //if he jumps then add it to the MoveToMake
-            //TODO: check this
-            MoveToMake += Input.GetButton("Jump") ? JumpSpeed * transform.up : Vector3.zero;
+            //if he's on ground and presseed Jump button then he should get velocity:
+            if (character.isGrounded && Input.GetButton("Jump"))
+            {
+                isJumping = true;
+            }
+            //if he landed back on the ground then he has no velocity anymore
+            else if (character.isGrounded)
+            {
+                isJumping = false;
+            }
+            MoveToMake += isJumping? (JumpSpeed * transform.up) : Vector3.zero;
         }
 
         private void CalcCamReferenceObject()
