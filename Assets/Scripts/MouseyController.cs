@@ -1,4 +1,5 @@
 ﻿using alexshko.colamazle.core;
+using System;
 using UnityEngine;
 
 namespace alexshko.colamazle.Entities
@@ -45,6 +46,8 @@ namespace alexshko.colamazle.Entities
 
         private void CalcMovementToMake()
         {
+            //to make comparison to previous movement vector. will be used, for instance, to check if he reached the maximum height during jump
+            Vector3 prevMovement = MoveToMake;
             MoveToMake = Vector3.zero;
 
             //take the Vertical input axis. and also the vertical valuue of the joystick:
@@ -72,19 +75,19 @@ namespace alexshko.colamazle.Entities
             if (character.isGrounded && Input.GetButton("Jump"))
             {
                 isJumping = true;
+                StartJumpAnim();
             }
             //if he landed back on the ground then he has no velocity anymore
             else if (character.isGrounded)
             {
-                //if he was in the middle of jumping process and landed, stop animation.
-                if (isJumping)
-                {
-                    character.GetComponent<Animator>().SetTrigger("StopJumpProcess");
-                }
                 isJumping = false;
-
             }
             MoveToMake += isJumping? (JumpSpeed * transform.up) : Vector3.zero;
+            //if he's in the height of the jump, then start the second animation.
+            if (isJumping && (Mathf.Sign(MoveToMake.y) == -1 && Mathf.Sign(prevMovement.y) ==1))
+            {
+                FinshJumpAnim();
+            }
         }
 
         private void CalcCamReferenceObject()
@@ -150,6 +153,17 @@ namespace alexshko.colamazle.Entities
         private void MakeMoveAnim(float speed)
         {
             character.GetComponent<Animator>().SetFloat("Speed", Mathf.Clamp(speed, -MaxBackwardSpeed, MaxForwardSpeed));
+        }
+
+        private void StartJumpAnim()
+        {
+            character.GetComponent<Animator>().SetTrigger("Jump");
+        }
+
+        private void FinshJumpAnim()
+        {
+            Debug.Log("Finish jump anim");
+            character.GetComponent<Animator>().SetTrigger("FinishJump");
         }
     }
 }
