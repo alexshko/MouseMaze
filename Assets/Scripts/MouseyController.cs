@@ -72,9 +72,8 @@ namespace alexshko.colamazle.Entities
 
             //if he jumps then add it to the MoveToMake
             //if he's on ground and presseed Jump button then he should get velocity:
-            if (character.isGrounded && Input.GetButton("Jump"))
+            if (character.isGrounded && isJumping)
             {
-                isJumping = true;
                 StartJumpAnim();
             }
             //if he landed back on the ground then he has no velocity anymore
@@ -164,6 +163,15 @@ namespace alexshko.colamazle.Entities
         {
             Debug.Log("Finish jump anim");
             character.GetComponent<Animator>().SetTrigger("FinishJump");
+        }
+
+        public void MakeJumpButton()
+        {
+            if (!isJumping)
+            {
+                //will be checked during update function and perform jump. once it's grounded he will become flase again.
+                isJumping = true;
+            }
         }
     }
 }
