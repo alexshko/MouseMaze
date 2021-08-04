@@ -17,6 +17,7 @@ namespace alexshko.colamazle.Entities
         private Vector3 MoveToMake;
         private Vector3 gravitySpeed = Vector3.zero;
         private Vector3 jumpSpeed = Vector3.zero;
+        private bool prevGrounded = false;
         private bool isJumping = false;
         private float CameraMoveAngleY = 0;
         private float CharAngleY = 0;
@@ -71,15 +72,15 @@ namespace alexshko.colamazle.Entities
             MoveToMake += gravitySpeed;
 
             //if he jumps then add it to the MoveToMake
+            //if he landed back on the ground then he has no velocity anymore
+            if (character.isGrounded && !prevGrounded)
+            {
+                isJumping = false;
+            }
             //if he's on ground and presseed Jump button then he should get velocity:
             if (character.isGrounded && isJumping)
             {
                 StartJumpAnim();
-            }
-            //if he landed back on the ground then he has no velocity anymore
-            else if (character.isGrounded)
-            {
-                isJumping = false;
             }
             MoveToMake += isJumping? (JumpSpeed * transform.up) : Vector3.zero;
             //if he's in the height of the jump, then start the second animation.
@@ -87,6 +88,7 @@ namespace alexshko.colamazle.Entities
             {
                 FinshJumpAnim();
             }
+            prevGrounded = character.isGrounded;
         }
 
         private void CalcCamReferenceObject()

@@ -1,4 +1,5 @@
-﻿using alexshko.colamazle.helpers;
+﻿using alexshko.colamazle.Entities;
+using alexshko.colamazle.helpers;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -45,7 +46,8 @@ namespace alexshko.colamazle.core
                 if (cheeseList == null)
                 {
                     cheeseList = new ObservedList<Transform>();
-                    cheeseList.OnListChanged = UpdateCheeseUI;
+                    cheeseList.OnListChanged += UpdateCheeseUI;
+                    cheeseList.OnListChanged += CheckIfOpenPortal;
                 }
                 return cheeseList;
             }
@@ -75,6 +77,14 @@ namespace alexshko.colamazle.core
         public void UpdateCheeseUI()
         {
             ScoreRef.text = NumberOfCheesesInGame.ToString();
+        }
+
+        private void CheckIfOpenPortal()
+        {
+            if (NumberOfCheesesInGame == 0)
+            {
+                GameObject.FindObjectOfType<GateWay>().ActivateGateway();
+            }
         }
     }
 }
