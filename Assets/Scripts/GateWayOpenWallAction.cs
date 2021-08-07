@@ -10,14 +10,20 @@ public class GateWayOpenWallAction : MonoBehaviour, GateWayAction
     public int waitTime = 1500;
     public void makeAction()
     {
-        Animator anim =  wallRef.GetComponent<Animator>();
-        if (anim)
-        {
-            anim.SetTrigger("makeAnim");
-        }
         if (cameraRef)
         {
             ShowCameraOnEffect().ConfigureAwait(false);
+        }
+        MakeAnimation().ConfigureAwait(true);
+    }
+
+    private async Task MakeAnimation()
+    {
+        await Task.Delay(1000);
+        Animator anim = wallRef.GetComponent<Animator>();
+        if (anim)
+        {
+            anim.SetTrigger("makeAnim");
         }
     }
 
