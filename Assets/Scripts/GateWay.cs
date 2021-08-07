@@ -24,17 +24,33 @@ namespace alexshko.colamazle.Entities
         private void OnTriggerEnter(Collider other)
         {
             Debug.Log("Open Gate");
-            if (actionToPerformWhenStepped != null &&isActive)
+            //if (actionToPerformWhenStepped != null &&isActive)
+            //{
+            //    actionToPerformWhenStepped(other.transform);
+            //}
+            if (isActive)
             {
-                actionToPerformWhenStepped(other.transform);
+                GateWayAction gateAction = GetComponent<GateWayAction>();
+                if (gateAction != null)
+                {
+                    gateAction.makeAction();
+                }
             }
         }
         private void OnCollisionEnter(Collision collision)
         {
-            Debug.Log("Open Gate by collision");
-            if (actionToPerformWhenStepped != null && isActive)
+            //Debug.Log("Open Gate by collision");
+            //if (actionToPerformWhenStepped != null && isActive)
+            //{
+            //    actionToPerformWhenStepped(collision.transform);
+            //}
+            if (isActive)
             {
-                actionToPerformWhenStepped(collision.transform);
+                GateWayAction gateAction = GetComponent<GateWayAction>();
+                if (gateAction != null)
+                {
+                    gateAction.makeAction();
+                }
             }
         }
 
@@ -76,5 +92,10 @@ namespace alexshko.colamazle.Entities
             litGroundRef.gameObject.SetActive(active);
             regularlGroundRef.gameObject.SetActive(!active);
         }
+    }
+
+    public interface GateWayAction
+    {
+        void makeAction();
     }
 }
