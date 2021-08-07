@@ -5,7 +5,8 @@ namespace alexshko.colamazle.Entities
 {
     public class GateWay : MonoBehaviour
     {
-        //public Transform AffectedGameObject;
+        public Transform regularlGroundRef;
+        public Transform litGroundRef;
         public bool isActive { get; set; }
 
         private void Awake()
@@ -36,35 +37,27 @@ namespace alexshko.colamazle.Entities
         {
             this.GetComponent<Renderer>().material.SetFloat(Shader.PropertyToID("Alpha"), 0.4f);
             this.GetComponent<Renderer>().material.SetFloat(Shader.PropertyToID("IsActive"), 1);
-            foreach (var item in this.GetComponentsInChildren<Transform>())
-            {
-                if (item.gameObject.name == "GateWayGround")
-                {
-                    item.GetComponent<Renderer>().material.SetFloat(Shader.PropertyToID("Alpha"), 0.4f);
-                    item.GetComponent<Renderer>().material.SetFloat(Shader.PropertyToID("IsActive"), 1);
-                    break;
-                }
-            }
             this.GetComponent<MeshRenderer>().enabled = true;
+            SetGroundOfPortalToActive();
+
             isActive = true;
             Debug.Log("Activate Gateway");
         }
+
         public void DeactivateGateway()
         {
             this.GetComponent<Renderer>().material.SetFloat("Alpha", 0);
             this.GetComponent<Renderer>().material.SetFloat("IsActive", 0);
-            foreach (var item in this.GetComponentsInChildren<Transform>())
-            {
-                if (item.gameObject.name == "GateWayGround")
-                {
-                    item.GetComponent<Renderer>().material.SetFloat("Alpha", 1);
-                    item.GetComponent<Renderer>().material.SetFloat("IsActive", 0);
-                    break;
-                }
-            }
-            //this.GetComponent<MeshRenderer>().enabled = false;
+            this.GetComponent<MeshRenderer>().enabled = false;
+            SetGroundOfPortalToActive(false);
+
             isActive = false;
             Debug.Log("Deactivate Gateway");
+        }
+        private void SetGroundOfPortalToActive(bool active = true)
+        {
+            litGroundRef.gameObject.SetActive(active);
+            regularlGroundRef.gameObject.SetActive(!active);
         }
     }
 }
