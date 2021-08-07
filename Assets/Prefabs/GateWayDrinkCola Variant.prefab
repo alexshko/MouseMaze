@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &4505224056200544629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3721850967337788492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 605b4aeb6e99f2f4180ae5991eaf668f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ColaRef: {fileID: 0}
+  MouseyRef: {fileID: 0}
+  MouseHandRef: {fileID: 0}
+  cameraRef: {fileID: 0}
+  waitTime: 1500
+--- !u!1001 &6057549815002890413
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7473185689235350753, guid: 66ceb43c9dad0a0489b0535a8ba12880,
+        type: 3}
+      propertyPath: m_Name
+      value: GateWayDrinkCola
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473185689235350757, guid: 66ceb43c9dad0a0489b0535a8ba12880,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473185689235350757, guid: 66ceb43c9dad0a0489b0535a8ba12880,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 39.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473185689235350757, guid: 66ceb43c9dad0a0489b0535a8ba12880,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473185689235350757, guid: 66ceb43c9dad0a0489b0535a8ba12880,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 56.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473185689235350757, guid: 66ceb43c9dad0a0489b0535a8ba12880,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473185689235350757, guid: 66ceb43c9dad0a0489b0535a8ba12880,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473185689235350757, guid: 66ceb43c9dad0a0489b0535a8ba12880,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473185689235350757, guid: 66ceb43c9dad0a0489b0535a8ba12880,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473185689235350757, guid: 66ceb43c9dad0a0489b0535a8ba12880,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473185689235350757, guid: 66ceb43c9dad0a0489b0535a8ba12880,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473185689235350757, guid: 66ceb43c9dad0a0489b0535a8ba12880,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7473185689235350779, guid: 66ceb43c9dad0a0489b0535a8ba12880,
+        type: 3}
+      propertyPath: ActiveInIntitalState
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 66ceb43c9dad0a0489b0535a8ba12880, type: 3}
+--- !u!1 &3721850967337788492 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7473185689235350753, guid: 66ceb43c9dad0a0489b0535a8ba12880,
+    type: 3}
+  m_PrefabInstance: {fileID: 6057549815002890413}
+  m_PrefabAsset: {fileID: 0}

@@ -12,11 +12,19 @@ namespace alexshko.colamazle.Entities
 
         public CinemachineVirtualCamera cameraRef;
         public int waitTime = 1500;
+        public bool ActiveInIntitalState = false;
         public bool isActive { get; set; }
 
         private void Awake()
         {
-            DeactivateGateway();
+            if (ActiveInIntitalState)
+            {
+                ActivateGateway();
+            }
+            else
+            {
+                DeactivateGateway();
+            }
         }
 
         //need to change this so it will be more generic:
@@ -28,6 +36,7 @@ namespace alexshko.colamazle.Entities
             //{
             //    actionToPerformWhenStepped(other.transform);
             //}
+            Debug.Log("trigger is active");
             if (isActive)
             {
                 GateWayAction gateAction = GetComponent<GateWayAction>();

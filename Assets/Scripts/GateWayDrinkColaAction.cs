@@ -1,17 +1,20 @@
-﻿using UnityEngine;
-using alexshko.colamazle.Entities;
+﻿using alexshko.colamazle.Entities;
 using Cinemachine;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace alexshko.colamazle.Entities
 {
-    public class GateWayOpenWallAction : MonoBehaviour, GateWayAction
+    public class GateWayDrinkColaAction : MonoBehaviour, GateWayAction
     {
-        public Transform wallRef;
+        public Transform ColaRef;
+        public Transform MouseyRef;
+        public Transform MouseHandRef;
         public CinemachineVirtualCamera cameraRef;
         public int waitTime = 1500;
         public void makeAction()
         {
+            Debug.Log("make acrion gateway");
             if (cameraRef)
             {
                 ShowCameraOnEffect().ConfigureAwait(false);
@@ -22,12 +25,12 @@ namespace alexshko.colamazle.Entities
         private async Task MakeAnimation()
         {
             await Task.Delay(1000);
-            Animator anim = wallRef.GetComponent<Animator>();
+            Animator anim = MouseyRef.GetComponent<Animator>();
             if (anim)
             {
-                anim.SetTrigger("makeAnim");
+                anim.SetTrigger("PickUp");
             }
-
+            ColaRef.parent = MouseHandRef;
         }
 
         private async Task ShowCameraOnEffect()
