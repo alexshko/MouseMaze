@@ -1,5 +1,7 @@
 ﻿using System;
 using UnityEngine;
+using Cinemachine;
+using System.Threading.Tasks;
 
 namespace alexshko.colamazle.Entities
 {
@@ -7,6 +9,9 @@ namespace alexshko.colamazle.Entities
     {
         public Transform regularlGroundRef;
         public Transform litGroundRef;
+
+        public CinemachineVirtualCamera cameraRef;
+        public int waitTime = 1500;
         public bool isActive { get; set; }
 
         private void Awake()
@@ -39,9 +44,21 @@ namespace alexshko.colamazle.Entities
             this.GetComponent<Renderer>().material.SetFloat(Shader.PropertyToID("IsActive"), 1);
             this.GetComponent<MeshRenderer>().enabled = true;
             SetGroundOfPortalToActive();
+            if (cameraRef)
+            {
+                ShowCameraOnEffect().ConfigureAwait(false);
+            }
 
             isActive = true;
             Debug.Log("Activate Gateway");
+        }
+
+        private async Task ShowCameraOnEffect()
+        {
+            int curPriority = cameraRef.Priority;
+            cameraRef.Priority = int.MaxValue;
+            await Task.Delay(waitTime);
+            cameraRef.Priority = curPriority;
         }
 
         public void DeactivateGateway()

@@ -237,6 +237,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37d86b540fe197c48bd6cd60cfa46106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  regularlGroundRef: {fileID: 426136870152242865}
+  litGroundRef: {fileID: 7473185690217178278}
 --- !u!1 &7473185690217178273
 GameObject:
   m_ObjectHideFlags: 0
