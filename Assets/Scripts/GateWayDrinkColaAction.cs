@@ -31,6 +31,7 @@ namespace alexshko.colamazle.Entities
                 anim.SetTrigger("PickUp");
             }
             ColaRef.parent = MouseHandRef;
+            ColaRef.localPosition = Vector3.zero;
         }
 
         private async Task ShowCameraOnEffect()
