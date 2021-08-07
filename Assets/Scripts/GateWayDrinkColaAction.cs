@@ -32,6 +32,7 @@ namespace alexshko.colamazle.Entities
             }
             ColaRef.parent = MouseHandRef;
             ColaRef.localPosition = Vector3.zero;
+            ColaRef.localRotation = Quaternion.Euler(0, 0, 90);
         }
 
         private async Task ShowCameraOnEffect()

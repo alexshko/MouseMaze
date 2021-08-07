@@ -278,6 +278,7 @@ Transform:
   - {fileID: 3288634674268030454}
   - {fileID: 287465039225554063}
   - {fileID: 904067697146512558}
+  - {fileID: 4655724762038364532}
   m_Father: {fileID: 5184639643546226430}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -811,6 +812,36 @@ Transform:
   - {fileID: 3903950723363032106}
   m_Father: {fileID: 5897784972255040956}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4149932459209367910
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4655724762038364532}
+  m_Layer: 0
+  m_Name: GrabingPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4655724762038364532
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4149932459209367910}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.014, y: 0.089, z: 0.042}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4749538872930776643}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4196922911064903690
 GameObject:
@@ -2031,8 +2062,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b72212d2265ace442bfaefce2db245cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxForwardSpeed: 5
-  MaxBackwardSpeed: 1
+  MaxForwardSpeed: 10
+  MaxBackwardSpeed: 3
+  JumpSpeed: 7.5
+  horizontalAimingSpeed: 100
+  CamRefObject: {fileID: 1871344776907369750}
 --- !u!1 &7863811017525758031
 GameObject:
   m_ObjectHideFlags: 0
