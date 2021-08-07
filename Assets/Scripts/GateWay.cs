@@ -51,18 +51,18 @@ namespace alexshko.colamazle.Entities
         }
         public void DeactivateGateway()
         {
-            this.GetComponent<Renderer>().material.SetFloat(Shader.PropertyToID("Alpha"), 0);
-            this.GetComponent<Renderer>().material.SetFloat(Shader.PropertyToID("IsActive"), 0);
+            this.GetComponent<Renderer>().material.SetFloat("Alpha", 0);
+            this.GetComponent<Renderer>().material.SetFloat("IsActive", 0);
             foreach (var item in this.GetComponentsInChildren<Transform>())
             {
                 if (item.gameObject.name == "GateWayGround")
                 {
-                    item.GetComponent<Renderer>().material.SetFloat(Shader.PropertyToID("Alpha"), 1);
-                    item.GetComponent<Renderer>().material.SetFloat(Shader.PropertyToID("IsActive"), 0);
+                    item.GetComponent<Renderer>().material.SetFloat("Alpha", 1);
+                    item.GetComponent<Renderer>().material.SetFloat("IsActive", 0);
                     break;
                 }
             }
-            this.GetComponent<MeshRenderer>().enabled = false;
+            //this.GetComponent<MeshRenderer>().enabled = false;
             isActive = false;
             Debug.Log("Deactivate Gateway");
         }

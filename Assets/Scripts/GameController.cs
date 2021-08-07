@@ -34,6 +34,8 @@ namespace alexshko.colamazle.core
             get => CheeseList.Count;
         }
 
+        private List<GateWay> listOfGateWays;
+
 
         //List of cheese. the cheeses will be added when Enabled (on game start).
 
@@ -57,10 +59,17 @@ namespace alexshko.colamazle.core
             }
         }
 
+        public Transform GateWaysHir;
+
         private void Awake()
         {
             Instance = this;
             Debug.Log("Screen:" + Camera.main.WorldToScreenPoint(UICanvasRef.transform.position));
+            listOfGateWays = new List<GateWay>();
+            foreach (var item in GateWaysHir.GetComponentsInChildren<GateWay>())
+            {
+                listOfGateWays.Add(item);
+            } 
 
             AdjustScreenSize();
         }
@@ -83,8 +92,19 @@ namespace alexshko.colamazle.core
         {
             if (NumberOfCheesesInGame == 0)
             {
-                GameObject.FindObjectOfType<GateWay>().ActivateGateway();
+                foreach (var gateway in listOfGateWays)
+                {
+                    gateway.ActivateGateway();
+                }
             }
+        }
+
+        private void OnDestroy()
+        {
+            listOfGateWays.Clear();
+            listOfGateWays = null;
+            cheeseList.Clear();
+            cheeseList = null;
         }
     }
 }
