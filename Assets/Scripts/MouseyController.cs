@@ -12,9 +12,13 @@ namespace alexshko.colamazle.Entities
         public int horizontalAimingSpeed = 6;
         public Transform CamRefObject;
 
+        [SerializeField]
+        private float speed => MoveToMakeNoGravityLocal.magnitude;
+
 
         private CharacterController character;
         private Vector3 MoveToMake;
+        private Vector3 MoveToMakeNoGravityLocal;
         private Vector3 gravitySpeed = Vector3.zero;
         private Vector3 jumpSpeed = Vector3.zero;
         private bool prevGrounded = false;
@@ -105,7 +109,13 @@ namespace alexshko.colamazle.Entities
                         if ((curTouch.phase == TouchPhase.Moved || curTouch.phase == TouchPhase.Stationary) && curTouch.position.x > 200 && curTouch.position.y > 200)
                         {
                             fingerMoveForCamera = curTouch.deltaPosition;
-                            CameraMoveAngleY += Mathf.Clamp(fingerMoveForCamera.x, -1, 1) * horizontalAimingSpeed * Time.deltaTime;
+                            //if he's during run then take only half the aiming speed.
+                            int aimingSpeed = horizontalAimingSpeed;
+                            if (speed >= MaxForwardSpeed - 1)
+                            {
+                                aimingSpeed = horizontalAimingSpeed / 2;
+                            }
+                            CameraMoveAngleY += Mathf.Clamp(fingerMoveForCamera.x, -1, 1) * aimingSpeed * Time.deltaTime;
                             break;
                         }
                     }
@@ -144,8 +154,10 @@ namespace alexshko.colamazle.Entities
                 character.Move(MoveToMake * Time.deltaTime);
             }
             //calculate the speed of wich to make the run animation:
-            Vector3 MoveToMakeNoGravity = new Vector3(MoveToMake.x, 0, MoveToMake.z);
-            Vector3 MoveToMakeNoGravityLocal = transform.InverseTransformDirection(MoveToMakeNoGravity);
+            Vector3 MoveToMakeNoGravityWorldSpace = new Vector3(MoveToMake.x, 0, MoveToMake.z);
+            MoveToMakeNoGravityLocal = transform.InverseTransformDirection(MoveToMakeNoGravityWorldSpace);
+            //Debug.Assert(MoveToMakeNoGravityWorldSpace.magnitude == MoveToMakeNoGravityLocal.magnitude);
+
             Debug.Log("Run: " + MoveToMakeNoGravityLocal);
             float sign = Mathf.Sign(MoveToMakeNoGravityLocal.z);
             MakeMoveAnim(sign * MoveToMakeNoGravityLocal.magnitude);
