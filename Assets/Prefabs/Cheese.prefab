@@ -108,3 +108,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a2352ba69c0a68459daf114e2bbdd74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CheeseCollectEffectPref: {fileID: 646524263964137052, guid: a369e0e89ac630d4899197481cd2dae2,
+    type: 3}

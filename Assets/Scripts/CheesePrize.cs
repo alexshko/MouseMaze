@@ -1,10 +1,13 @@
 ﻿using alexshko.colamazle.core;
 using UnityEngine;
+using UnityEngine.VFX;
 
 namespace alexshko.colamazle.Entities
 {
     public class CheesePrize : MonoBehaviour
     {
+        public Transform CheeseCollectEffectPref;
+
         //add the cheese to the Prizes List when it is enabled.
         private void OnEnable()
         {
@@ -15,6 +18,7 @@ namespace alexshko.colamazle.Entities
         private void OnDisable()
         {
             GameController.Instance.CheeseList.Remove(this.transform);
+
         }
 
         private void OnTriggerEnter(Collider other)
@@ -26,6 +30,9 @@ namespace alexshko.colamazle.Entities
         {
             Debug.Log("CheeseCollected");
             this.enabled = false;
+            Transform newEffect = Instantiate(CheeseCollectEffectPref, this.transform.position, CheeseCollectEffectPref.rotation);
+            newEffect.GetComponent<VisualEffect>().Play();
+            Destroy(newEffect.gameObject, 3);
             Destroy(this.gameObject);
         }
     }
