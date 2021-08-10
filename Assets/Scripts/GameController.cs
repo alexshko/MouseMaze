@@ -34,6 +34,9 @@ namespace alexshko.colamazle.core
             get => CheeseList.Count;
         }
 
+        //to know if to accept input from player:
+        public bool acceptInputPlayer { get; set; }
+
         private List<GateWay> listOfGateWays;
 
 
@@ -69,7 +72,8 @@ namespace alexshko.colamazle.core
             foreach (var item in GateWaysHir.GetComponentsInChildren<GateWay>())
             {
                 listOfGateWays.Add(item);
-            } 
+            }
+            acceptInputPlayer = true;
 
             AdjustScreenSize();
         }

@@ -55,8 +55,12 @@ namespace alexshko.colamazle.Entities
             Vector3 prevMovement = MoveToMake;
             MoveToMake = Vector3.zero;
 
-            //take the Vertical input axis. and also the vertical valuue of the joystick:
-            float InputVal = Input.GetAxis("Vertical") + GameController.Instance.JoystickValue;
+            float InputVal = 0;
+            if (GameController.Instance.acceptInputPlayer)
+            {
+                //take the Vertical input axis. and also the vertical valuue of the joystick:
+                InputVal = Input.GetAxis("Vertical") + GameController.Instance.JoystickValue;
+            }
             if (Mathf.Abs(InputVal) > 0.05f)
             {
                 Debug.Log("Going forward");
@@ -99,7 +103,8 @@ namespace alexshko.colamazle.Entities
         {
             //added by alexshko:
             //Android phone:
-            isCameraMove = (GameController.Instance.JoystickIsTouching && Input.touchCount > 1) || (!GameController.Instance.JoystickIsTouching && Input.touchCount > 0);
+            isCameraMove = GameController.Instance.acceptInputPlayer;
+            isCameraMove = isCameraMove && (GameController.Instance.JoystickIsTouching && Input.touchCount > 1) || (!GameController.Instance.JoystickIsTouching && Input.touchCount > 0);
             if (isCameraMove)
             {
                 foreach (Touch curTouch in Input.touches)
