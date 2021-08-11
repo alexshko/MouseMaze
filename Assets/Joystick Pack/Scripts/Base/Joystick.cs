@@ -43,8 +43,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     //added by alexshko for android:
     //boollean is true if the joystick is pressed. also find the touch id.
     //can't remember the touchid because it can be changed during gameplay.
-    private bool m_isTouching;
-    public bool isTouching { get { return m_isTouching; } }
+    //private bool m_isTouching;
+    public bool isTouching { get { return (TouchID!=-1); } }
     public int TouchID { get { return findTouchFingerId(); } }
     private int findTouchFingerId()
     {
@@ -52,6 +52,11 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         {
             if ((cur.phase != TouchPhase.Ended) && (cur.phase != TouchPhase.Canceled) && baseRect.rect.Contains(cur.position))
             {
+                ////check if touch overlaps other objects
+                //if (EventSystem.current.IsPointerOverGameObject(cur.fingerId))
+                //{
+                //    return -1;
+                //}
                 return cur.fingerId;
             }
         }
