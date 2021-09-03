@@ -13070,6 +13070,11 @@ PrefabInstance:
       propertyPath: cameraRef
       value: 
       objectReference: {fileID: 136399714}
+    - target: {fileID: 4261421245700273953, guid: 372dc3d6d86ff57498931504f56c58fc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4261421246883755873, guid: 372dc3d6d86ff57498931504f56c58fc,
         type: 3}
       propertyPath: m_Name
@@ -13158,6 +13163,11 @@ PrefabInstance:
     - target: {fileID: 4261421246883755899, guid: 372dc3d6d86ff57498931504f56c58fc,
         type: 3}
       propertyPath: ActiveInIntitalState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880446408689507218, guid: 372dc3d6d86ff57498931504f56c58fc,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
