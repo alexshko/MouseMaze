@@ -17,12 +17,14 @@ namespace alexshko.colamazle.Entities
 
 
         private CharacterController character;
+        private Vector3 prevMovement;
         private Vector3 MoveToMake;
         private Vector3 MoveToMakeNoGravityLocal;
         private Vector3 gravitySpeed = Vector3.zero;
         private Vector3 jumpSpeed = Vector3.zero;
         private bool prevGrounded = false;
         private bool isJumping = false;
+        private bool isAboutToJump = false; //for requesting to jump by button.
         private float CameraMoveAngleY = 0;
         private float CharAngleY = 0;
 
@@ -52,7 +54,7 @@ namespace alexshko.colamazle.Entities
         private void CalcMovementToMake()
         {
             //to make comparison to previous movement vector. will be used, for instance, to check if he reached the maximum height during jump
-            Vector3 prevMovement = MoveToMake;
+            prevMovement = MoveToMake;
             MoveToMake = Vector3.zero;
 
             float InputVal = 0;
@@ -71,32 +73,42 @@ namespace alexshko.colamazle.Entities
                     CharAngleY = CamRefObject.rotation.eulerAngles.y;
                     //CameraMoveAngleY = 0;
                 }
+                Debug.Log("Move to make1: " + transform.forward);
                 MoveToMake += (InputVal > 0 ? MaxForwardSpeed : MaxBackwardSpeed) * Mathf.Clamp(InputVal, -1, 1) *transform.forward;
             }
 
-            //calculate the speed affected by gravity in this frame and sum it to gravitySpeed:
-            gravitySpeed = character.isGrounded ? Vector3.zero : (gravitySpeed + Physics.gravity * Time.deltaTime);
-            //add to the frame's speed:
-            MoveToMake += gravitySpeed;
-
-            //if he jumps then add it to the MoveToMake
-            //if he landed back on the ground then he has no velocity anymore
+            //if he's landed on ground, then cancel jumping.
             if (character.isGrounded && !prevGrounded)
             {
                 isJumping = false;
             }
-            //if he's on ground and presseed Jump button then he should get velocity:
-            if (character.isGrounded && isJumping)
+            //if he's on ground and presseed Jump button then it should be taken care in MoveToMake and activate the jump anim.
+            if (character.isGrounded && isAboutToJump)
             {
+                isJumping = true;
                 StartJumpAnim();
             }
             MoveToMake += isJumping? (JumpSpeed * transform.up) : Vector3.zero;
-            //if he's in the height of the jump, then start the second animation.
-            if (isJumping && (Mathf.Sign(MoveToMake.y) == -1 && Mathf.Sign(prevMovement.y) ==1))
+
+            //calculate the speed affected by gravity and sum it to gravitySpeed.
+            //if he;s on the ground then it shoukd be zero for the CharacterController to work
+            if (character.isGrounded && !isJumping)
+            {
+                gravitySpeed = Vector3.zero;
+            }
+            gravitySpeed = gravitySpeed + Physics.gravity * Time.deltaTime;
+            //add to the frame's speed:
+            MoveToMake += gravitySpeed;
+
+            //if he's in the height of the jump, and now starts falling, then start the second animation.
+            if (isJumping && (Mathf.Sign(MoveToMake.y) == -1 && Mathf.Sign(prevMovement.y) == 1))
             {
                 FinshJumpAnim();
             }
+
             prevGrounded = character.isGrounded;
+            //at the end of the update, reset the request to jump.
+            isAboutToJump = false;
         }
 
         private void CalcCamReferenceObject()
@@ -186,11 +198,7 @@ namespace alexshko.colamazle.Entities
 
         public void MakeJumpButton()
         {
-            if (!isJumping)
-            {
-                //will be checked during update function and perform jump. once it's grounded he will become flase again.
-                isJumping = true;
-            }
+            isAboutToJump = true;
         }
     }
 }

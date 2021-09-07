@@ -44,24 +44,25 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     //boollean is true if the joystick is pressed. also find the touch id.
     //can't remember the touchid because it can be changed during gameplay.
     //private bool m_isTouching;
-    public bool isTouching { get { return (TouchID!=-1); } }
-    public int TouchID { get { return findTouchFingerId(); } }
-    private int findTouchFingerId()
-    {
-        foreach (Touch cur in Input.touches)
-        {
-            if ((cur.phase != TouchPhase.Ended) && (cur.phase != TouchPhase.Canceled) && baseRect.rect.Contains(cur.position))
-            {
-                ////check if touch overlaps other objects
-                //if (EventSystem.current.IsPointerOverGameObject(cur.fingerId))
-                //{
-                //    return -1;
-                //}
-                return cur.fingerId;
-            }
-        }
-        return -1;
-    }
+    private int registeredTouchFinger = -1;
+    public bool isTouching { get => TouchID!=-1;  }
+    public int TouchID { get => registeredTouchFinger; }
+    //private int findTouchFingerId()
+    //{
+    //    foreach (Touch cur in Input.touches)
+    //    {
+    //        if ((cur.phase != TouchPhase.Ended) && (cur.phase != TouchPhase.Canceled) && baseRect.rect.Contains(cur.position))
+    //        {
+    //            ////check if touch overlaps other objects
+    //            //if (EventSystem.current.IsPointerOverGameObject(cur.fingerId))
+    //            //{
+    //            //    return -1;
+    //            //}
+    //            return cur.fingerId;
+    //        }
+    //    }
+    //    return -1;
+    //}
 
     protected virtual void Start()
     {
@@ -83,6 +84,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     public virtual void OnPointerDown(PointerEventData eventData)
     {
         OnDrag(eventData);
+        RegisterTouchFinger();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -97,6 +99,20 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         FormatInput();
         HandleInput(input.magnitude, input.normalized, radius, cam);
         handle.anchoredPosition = input * radius * handleRange;
+    }
+
+    //added by alexshko:
+    private void RegisterTouchFinger()
+    {
+        foreach (Touch cur in Input.touches)
+        {
+            if ((cur.phase != TouchPhase.Ended) && (cur.phase != TouchPhase.Canceled) && baseRect.rect.Contains(cur.position))
+            {
+                registeredTouchFinger = cur.fingerId;
+                return;
+            }
+        }
+        registeredTouchFinger = -1;
     }
 
     protected virtual void HandleInput(float magnitude, Vector2 normalised, Vector2 radius, Camera cam)
@@ -156,6 +172,7 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     {
         input = Vector2.zero;
         handle.anchoredPosition = Vector2.zero;
+        RegisterTouchFinger();
     }
 
     protected Vector2 ScreenPointToAnchoredPosition(Vector2 screenPosition)

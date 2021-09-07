@@ -28,7 +28,7 @@ namespace alexshko.colamazle.core
         {
             get => JoystickPref.isTouching;
         }
-        
+
         public int NumberOfCheesesInGame
         {
             get => CheeseList.Count;
