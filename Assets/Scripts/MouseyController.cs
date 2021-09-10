@@ -43,7 +43,8 @@ namespace alexshko.colamazle.Entities
             {
                 Debug.LogError("missing CharacterController");
             }
-            CameraMoveAngleY = 0;
+            CameraMoveAngleY = transform.rotation.eulerAngles.y;
+            CharAngleY = transform.rotation.eulerAngles.y;
             MoveToMake = Vector3.zero;
             gravitySpeed = Vector3.zero;
             jumpSpeed = Vector3.zero;
