@@ -1,4 +1,6 @@
-﻿using System.Threading;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,8 +12,9 @@ public class TutorialCheckPointEngine : MonoBehaviour
 
     private Text txtRef;
     private Animator anim;
-    protected Task currMessage;
-    protected CancellationTokenSource tokenSource2;
+    //protected Task currMessage;
+    //protected CancellationTokenSource tokenSource2;
+    protected Coroutine curMessage;
 
     private static TutorialCheckPointEngine instance;
 
@@ -33,29 +36,29 @@ public class TutorialCheckPointEngine : MonoBehaviour
         {
             Debug.LogError("No text component to show");
         }
-        currMessage = null;
-        tokenSource2 = new CancellationTokenSource();
+        curMessage = null;
         anim = UIMessageToShowRef.GetComponent<Animator>();
     }
 
     public static void ShowMessageUI(string msg)
     {
-        if (instance.currMessage != null)
+        if (instance.curMessage != null)
         {
-            instance.tokenSource2.Cancel();
+            instance.StopCoroutine(instance.curMessage);
         }
-        instance.currMessage = Task.Run(async () => await instance.ShowMessage(msg), instance.tokenSource2.Token);
-        instance.currMessage.ConfigureAwait(true);
+        instance.curMessage = instance.StartCoroutine(instance.ShowMessage(msg));
+        
     }
 
-    private async Task ShowMessage(string msg)
+    private IEnumerator ShowMessage(string msg)
     {
         UIMessageToShowRef.SetActive(true);
         txtRef.text = msg;
         anim.SetBool("isShowMessage", true);
-        await Task.Delay(waitTimeMillis / 2);
+        yield return new WaitForSeconds(waitTimeMillis /1000 / 2);
         anim.SetBool("isShowMessage", false);
-        await Task.Delay(waitTimeMillis / 2);
+        yield return new WaitForSeconds(waitTimeMillis / 1000 / 2);
         UIMessageToShowRef.gameObject.SetActive(false);
+        yield return null;
     }
 }
