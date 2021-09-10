@@ -6,6 +6,11 @@ namespace alexshko.colamazle.Entities
 {
     public class MouseyController : MonoBehaviour
     {
+        #region references for taking cola animation
+        public Transform ColaRef { get; set; }
+        public Transform MouseHandRef { get; set; }
+        #endregion
+
         public float MaxForwardSpeed = 0f;
         public float MaxBackwardSpeed = 0f;
         public float JumpSpeed = 10f;
@@ -199,6 +204,16 @@ namespace alexshko.colamazle.Entities
         public void MakeJumpButton()
         {
             isAboutToJump = true;
+        }
+
+        public void GrabCola()
+        {
+            if (ColaRef && MouseHandRef)
+            {
+                ColaRef.parent = MouseHandRef;
+                ColaRef.localPosition = Vector3.zero;
+                ColaRef.localRotation = Quaternion.Euler(0, 0, 90);
+            }
         }
     }
 }

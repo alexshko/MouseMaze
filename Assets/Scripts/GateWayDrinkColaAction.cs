@@ -25,11 +25,19 @@ namespace alexshko.colamazle.Entities
         private async Task MakeAnimation()
         {
             await Task.Delay(1000);
+
+            MouseyRef.GetComponent<MouseyController>().ColaRef = ColaRef;
+            MouseyRef.GetComponent<MouseyController>().MouseHandRef = MouseHandRef;
+
             Animator anim = MouseyRef.GetComponent<Animator>();
             if (anim)
             {
                 anim.SetTrigger("PickUp");
             }
+        }
+
+        private void GrabCola()
+        {
             ColaRef.parent = MouseHandRef;
             ColaRef.localPosition = Vector3.zero;
             ColaRef.localRotation = Quaternion.Euler(0, 0, 90);

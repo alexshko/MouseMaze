@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - GateWay
+  - CocaCola
   layers:
   - Default
   - TransparentFX
