@@ -128,7 +128,7 @@ namespace alexshko.colamazle.Entities
                             fingerMoveForCamera = curTouch.deltaPosition;
                             //if he's during run then take only half the aiming speed.
                             int aimingSpeed = horizontalAimingSpeed;
-                            if (speed >= MaxForwardSpeed - 1)
+                            if (speed >= MaxForwardSpeed / 2.0f)
                             {
                                 aimingSpeed = horizontalAimingSpeed / 2;
                             }
