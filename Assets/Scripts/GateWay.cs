@@ -48,16 +48,12 @@ namespace alexshko.colamazle.Entities
         }
         private void OnCollisionEnter(Collision collision)
         {
-            //Debug.Log("Open Gate by collision");
-            //if (actionToPerformWhenStepped != null && isActive)
-            //{
-            //    actionToPerformWhenStepped(collision.transform);
-            //}
             if (isActive)
             {
                 GateWayAction gateAction = GetComponent<GateWayAction>();
                 if (gateAction != null)
                 {
+                    //take away control of mouse
                     gateAction.makeAction();
                 }
             }

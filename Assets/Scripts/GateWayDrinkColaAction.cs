@@ -1,4 +1,5 @@
-﻿using alexshko.colamazle.Entities;
+﻿using alexshko.colamazle.core;
+using alexshko.colamazle.Entities;
 using Cinemachine;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -45,6 +46,7 @@ namespace alexshko.colamazle.Entities
 
         private async Task ShowCameraOnEffect()
         {
+            GameController.Instance.acceptInputPlayer = false;
             int curPriority = cameraRef.Priority;
             cameraRef.Priority = int.MaxValue;
             await Task.Delay(waitTime);
