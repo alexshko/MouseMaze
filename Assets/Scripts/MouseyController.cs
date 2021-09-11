@@ -35,6 +35,10 @@ namespace alexshko.colamazle.Entities
 
         private bool isCameraMove;
         private Vector2 fingerMoveForCamera;
+        private float adjustedVerticalAim
+        {
+            get => speed==0? horizontalAimingSpeed : Mathf.Lerp(horizontalAimingSpeed/2.0f, horizontalAimingSpeed / 4.0f, speed / MaxForwardSpeed);
+        }
 
         private void Start()
         {
@@ -132,13 +136,8 @@ namespace alexshko.colamazle.Entities
                         if ((curTouch.phase == TouchPhase.Moved || curTouch.phase == TouchPhase.Stationary) && curTouch.position.x > 200 && curTouch.position.y > 200)
                         {
                             fingerMoveForCamera = curTouch.deltaPosition;
-                            //if he's during run then take only half the aiming speed.
-                            int aimingSpeed = horizontalAimingSpeed;
-                            if (speed >= MaxForwardSpeed / 2.0f)
-                            {
-                                aimingSpeed = horizontalAimingSpeed / 2;
-                            }
-                            CameraMoveAngleY += Mathf.Clamp(fingerMoveForCamera.x, -1, 1) * aimingSpeed * Time.deltaTime;
+                            //if he's during run then take only half the aiming speed
+                            CameraMoveAngleY += Mathf.Clamp(fingerMoveForCamera.x, -1, 1) * adjustedVerticalAim * Time.deltaTime;
                             break;
                         }
                     }
@@ -157,7 +156,7 @@ namespace alexshko.colamazle.Entities
         {
             if (Quaternion.Angle(transform.rotation, Quaternion.Euler(0, CharAngleY,0)) > 1)
             {
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0,CharAngleY,0), 5*Time.deltaTime);
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0,CharAngleY,0), 10*Time.deltaTime);
             }
         }
 

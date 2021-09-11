@@ -3,6 +3,7 @@ using alexshko.colamazle.Entities;
 using Cinemachine;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace alexshko.colamazle.Entities
 {
@@ -37,12 +38,12 @@ namespace alexshko.colamazle.Entities
             }
         }
 
-        private void GrabCola()
-        {
-            ColaRef.parent = MouseHandRef;
-            ColaRef.localPosition = Vector3.zero;
-            ColaRef.localRotation = Quaternion.Euler(0, 0, 90);
-        }
+        //private void GrabCola()
+        //{
+        //    ColaRef.parent = MouseHandRef;
+        //    ColaRef.localPosition = Vector3.zero;
+        //    ColaRef.localRotation = Quaternion.Euler(0, 0, 90);
+        //}
 
         private async Task ShowCameraOnEffect()
         {
@@ -51,6 +52,13 @@ namespace alexshko.colamazle.Entities
             cameraRef.Priority = int.MaxValue;
             await Task.Delay(waitTime);
             cameraRef.Priority = curPriority;
+            await Task.Delay(1000);
+            AsyncOperation ao = SceneManager.LoadSceneAsync(0);
+            ao.allowSceneActivation = true;
+            while (!ao.isDone)
+            {
+                await Task.Delay(10);
+            }
         }
     }
 }

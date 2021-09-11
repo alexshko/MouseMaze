@@ -9644,6 +9644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68a82ba3ae721294cb3d2e706c84d29a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastDateWorking: 09/28/2021
   JoystickPref: {fileID: 1001041550}
   UICanvasRef: {fileID: 1185872219}
   ScoreRef: {fileID: 987836186}
@@ -16544,6 +16545,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.5500378
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466180242019992281, guid: 0eeeacd35b7223f4298a0d4879057490,
+        type: 3}
+      propertyPath: horizontalAimingSpeed
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5484107663372897912, guid: 0eeeacd35b7223f4298a0d4879057490,
         type: 3}

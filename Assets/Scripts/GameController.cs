@@ -1,5 +1,6 @@
 ﻿using alexshko.colamazle.Entities;
 using alexshko.colamazle.helpers;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ namespace alexshko.colamazle.core
 
     public class GameController : MonoBehaviour
     {
+        [Tooltip("in format: mm/dd/yyyy")]
+        public string lastDateWorking;
         public static GameController Instance { get; set; }
 
         public DynamicJoystick JoystickPref;
@@ -66,6 +69,13 @@ namespace alexshko.colamazle.core
 
         private void Awake()
         {
+            DateTime expires = DateTime.Parse(lastDateWorking).AddMonths(1);
+            if (expires < DateTime.Now)
+            {
+                Debug.Log("after due. quit");
+                Application.Quit();
+            }
+
             Instance = this;
             Debug.Log("Screen:" + Camera.main.WorldToScreenPoint(UICanvasRef.transform.position));
             listOfGateWays = new List<GateWay>();

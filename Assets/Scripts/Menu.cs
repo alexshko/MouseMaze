@@ -1,18 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class Menu : MonoBehaviour
+namespace alexshko.colamazle.core
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Menu : MonoBehaviour
     {
-        
-    }
+        public void LoadLevel(string lvl)
+        {
+            int level = int.Parse(lvl);
+            SceneManager.LoadScene(level);
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void ExitGame()
+        {
+            Application.Quit();
+        }
     }
 }
