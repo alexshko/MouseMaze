@@ -14,7 +14,9 @@ namespace alexshko.colamazle.Entities
         public float MaxForwardSpeed = 0f;
         public float MaxBackwardSpeed = 0f;
         public float JumpSpeed = 10f;
-        public int horizontalAimingSpeed = 6;
+        public int horizontalCamStandSpeed = 6;
+        public int horizontalCamMinSpeed = 2;
+        public int horizontalCamMaxSpeed = 3;
         public Transform CamRefObject;
 
         [SerializeField]
@@ -37,7 +39,7 @@ namespace alexshko.colamazle.Entities
         private Vector2 fingerMoveForCamera;
         private float adjustedVerticalAim
         {
-            get => speed==0? horizontalAimingSpeed : Mathf.Lerp(horizontalAimingSpeed/2.0f, horizontalAimingSpeed / 4.0f, speed / MaxForwardSpeed);
+            get => speed==0? horizontalCamStandSpeed : Mathf.Lerp(horizontalCamMaxSpeed, horizontalCamMinSpeed, speed / MaxForwardSpeed);
         }
 
         private void Start()
@@ -84,7 +86,7 @@ namespace alexshko.colamazle.Entities
                     //CameraMoveAngleY = 0;
                 }
                 Debug.Log("Move to make1: " + transform.forward);
-                MoveToMake += (InputVal > 0 ? MaxForwardSpeed : MaxBackwardSpeed) * Mathf.Clamp(InputVal, -1, 1) *transform.forward;
+                MoveToMake += (InputVal > 0 ? MaxForwardSpeed : MaxBackwardSpeed) * Mathf.Clamp(InputVal, -1, 1) * transform.forward;
             }
 
             //if he's landed on ground, then cancel jumping.
