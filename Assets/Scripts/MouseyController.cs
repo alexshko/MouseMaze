@@ -80,13 +80,14 @@ namespace alexshko.colamazle.Entities
                 Debug.Log("Going forward");
                 if (CamRefObject.rotation.eulerAngles.magnitude > 1)
                 {
-                    //transform.rotation *= CamRefObject.rotation;
-                    //CamRefObject.rotation = Quaternion.Euler(0, 0, 0);
                     CharAngleY = CamRefObject.rotation.eulerAngles.y;
-                    //CameraMoveAngleY = 0;
                 }
-                Debug.Log("Move to make1: " + transform.forward);
-                MoveToMake += (InputVal > 0 ? MaxForwardSpeed : MaxBackwardSpeed) * Mathf.Clamp(InputVal, -1, 1) * transform.forward;
+                //if the character stands still and need to turn around, he will start moving only after finished turning.
+                if (speed != 0 || Quaternion.Angle(transform.rotation, Quaternion.Euler(0, CharAngleY, 0)) < 1)
+                {
+                    Debug.Log("Move to make1: " + transform.forward);
+                    MoveToMake += (InputVal > 0 ? MaxForwardSpeed : MaxBackwardSpeed) * Mathf.Clamp(InputVal, -1, 1) * transform.forward;
+                }
             }
 
             //if he's landed on ground, then cancel jumping.
