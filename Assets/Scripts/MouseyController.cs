@@ -78,11 +78,8 @@ namespace alexshko.colamazle.Entities
             if (Mathf.Abs(InputVal) > 0.05f)
             {
                 Debug.Log("Going forward");
-                if (CamRefObject.rotation.eulerAngles.magnitude > 1)
-                {
-                    CharAngleY = CamRefObject.rotation.eulerAngles.y;
-                }
                 //if the character stands still and need to turn around, he will start moving only after finished turning.
+                CharAngleY = CamRefObject.rotation.eulerAngles.y;
                 if (speed != 0 || Quaternion.Angle(transform.rotation, Quaternion.Euler(0, CharAngleY, 0)) < 1)
                 {
                     Debug.Log("Move to make1: " + transform.forward);
@@ -136,7 +133,7 @@ namespace alexshko.colamazle.Entities
                 {
                     if (curTouch.fingerId != GameController.Instance.JoystickTouchId)
                     {
-                        if ((curTouch.phase == TouchPhase.Moved || curTouch.phase == TouchPhase.Stationary) && curTouch.position.x > 200 && curTouch.position.y > 200)
+                        if (curTouch.phase == TouchPhase.Moved || curTouch.phase == TouchPhase.Stationary)
                         {
                             fingerMoveForCamera = curTouch.deltaPosition;
                             //if he's during run then take only half the aiming speed
