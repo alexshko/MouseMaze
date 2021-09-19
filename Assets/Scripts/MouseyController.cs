@@ -17,6 +17,8 @@ namespace alexshko.colamazle.Entities
         public int horizontalCamStandSpeed = 6;
         public int horizontalCamMinSpeed = 2;
         public int horizontalCamMaxSpeed = 3;
+        public float EpsilonForCamTurnCheck = 1.0f;
+        public float timeForPlayerTurn = 0.04f;
         public Transform CamRefObject;
 
         [SerializeField]
@@ -35,7 +37,7 @@ namespace alexshko.colamazle.Entities
         private bool isJumping = false;
         private bool isAboutToJump = false; //for requesting to jump by button.
         private float CameraMoveAngleY = 0;
-        float InputVal = 0;
+        private float InputVal = 0;
 
         private bool isCameraMove;
         private Vector2 fingerMoveForCamera;
@@ -90,14 +92,13 @@ namespace alexshko.colamazle.Entities
                 //take the Vertical input axis. and also the vertical valuue of the joystick:
                 InputVal = Input.GetAxis("Vertical") + GameController.Instance.JoystickValue;
             }
+            //if there is joystick moemvent, then needs to go forward.
+            //if it starts from standing (no speed), then it shoud wait for the turn to finsh first.
             if (Mathf.Abs(InputVal) > 0.05f)
             {
-                Debug.Log("Going forward");
-                //if the character stands still and need to turn around, he will start moving only after finished turning.
-                //CharAngleY = CamRefObject.rotation.eulerAngles.y;
-                if (Quaternion.Angle(mouseRef.rotation, CamRefObject.rotation) < 1)
+                if ((speed == 0 && Quaternion.Angle(mouseRef.rotation, CamRefObject.rotation) < EpsilonForCamTurnCheck) || speed!=0)
                 {
-                    Debug.Log("Move to make1: " + transform.forward);
+                    Debug.Log("Move to make1: " + mouseRef.forward);
                     MoveToMake += (InputVal > 0 ? MaxForwardSpeed : MaxBackwardSpeed) * Mathf.Clamp(InputVal, -1, 1) * mouseRef.forward;
                 }
             }
@@ -163,12 +164,11 @@ namespace alexshko.colamazle.Entities
 
         private void TurnCharacter()
         {
-            if (Mathf.Abs(InputVal) > 0.05f && Quaternion.Angle(mouseRef.rotation, CamRefObject.rotation) > 1)
+            if (Mathf.Abs(InputVal) > 0.05f && Quaternion.Angle(mouseRef.rotation, CamRefObject.rotation) > EpsilonForCamTurnCheck)
             {
-                //mouseRef.rotation = Quaternion.Lerp(mouseRef.rotation, CamRefObject.rotation, 10*Time.deltaTime);
                 float yVelocity = 0;
                 float curAngle = mouseRef.rotation.eulerAngles.y;
-                float newAngle = Mathf.SmoothDampAngle(curAngle, CamRefObject.rotation.eulerAngles.y, ref yVelocity, 0.05f);
+                float newAngle = Mathf.SmoothDampAngle(curAngle, CamRefObject.rotation.eulerAngles.y, ref yVelocity, timeForPlayerTurn);
                 mouseRef.rotation = Quaternion.Euler(new Vector3(0, newAngle, 0));
             }
         }
@@ -180,8 +180,7 @@ namespace alexshko.colamazle.Entities
             }
             //calculate the speed of wich to make the run animation:
             Vector3 MoveToMakeNoGravityWorldSpace = new Vector3(MoveToMake.x, 0, MoveToMake.z);
-            MoveToMakeNoGravityLocal = transform.InverseTransformDirection(MoveToMakeNoGravityWorldSpace);
-            //Debug.Assert(MoveToMakeNoGravityWorldSpace.magnitude == MoveToMakeNoGravityLocal.magnitude);
+            MoveToMakeNoGravityLocal = mouseRef.InverseTransformDirection(MoveToMakeNoGravityWorldSpace);
 
             Debug.Log("Run: " + MoveToMakeNoGravityLocal);
             float sign = Mathf.Sign(MoveToMakeNoGravityLocal.z);
@@ -194,7 +193,7 @@ namespace alexshko.colamazle.Entities
             if (CameraMoveAngleY > 1 || CameraMoveAngleY <-1)
             {
                 float curAngle = CamRefObject.rotation.eulerAngles.y;
-                float newAngle = Mathf.SmoothDampAngle(curAngle, curAngle + CameraMoveAngleY, ref yVelocity, 0.05f);
+                float newAngle = Mathf.SmoothDampAngle(curAngle, curAngle + CameraMoveAngleY, ref yVelocity, timeForPlayerTurn);
                 CameraMoveAngleY -= newAngle - curAngle;
                 CamRefObject.rotation = Quaternion.Euler(new Vector3(0, newAngle, 0));
             }
