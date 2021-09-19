@@ -48479,12 +48479,4 @@ AnimationClip:
     script: {fileID: 0}
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events:
-  - time: 1.0666667
-    functionName: GrabCola
-    data: 
-    objectReferenceParameter: {fileID: 6459144579177980617, guid: 3e79baa318741cf4bafd715f01286b97,
-      type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []

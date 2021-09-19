@@ -28,14 +28,17 @@ namespace alexshko.colamazle.Entities
         {
             await Task.Delay(1000);
 
-            MouseyRef.GetComponent<MouseyController>().ColaRef = ColaRef;
-            MouseyRef.GetComponent<MouseyController>().MouseHandRef = MouseHandRef;
-
             Animator anim = MouseyRef.GetComponentInChildren<Animator>();
             if (anim)
             {
                 anim.SetTrigger("PickUp");
             }
+            //wait a second for the animation to reach the point of straight hand:
+            await Task.Delay(1000*(1+4/60));
+            MouseyRef.GetComponent<MouseyController>().ColaRef = ColaRef;
+            MouseyRef.GetComponent<MouseyController>().MouseHandRef = MouseHandRef;
+            MouseyRef.GetComponent<MouseyController>().GrabCola();
+            await Task.Delay(300);
         }
 
         private async Task ShowCameraOnEffect()
