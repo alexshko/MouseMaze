@@ -22,8 +22,10 @@ namespace alexshko.colamazle.Entities
         [SerializeField]
         private float speed => MoveToMakeNoGravityLocal.magnitude;
 
-
+        private Animator anim;
         private CharacterController character;
+        private Transform mouseRef;
+        
         private Vector3 prevMovement;
         private Vector3 MoveToMake;
         private Vector3 MoveToMakeNoGravityLocal;
@@ -33,7 +35,7 @@ namespace alexshko.colamazle.Entities
         private bool isJumping = false;
         private bool isAboutToJump = false; //for requesting to jump by button.
         private float CameraMoveAngleY = 0;
-        private float CharAngleY = 0;
+        float InputVal = 0;
 
         private bool isCameraMove;
         private Vector2 fingerMoveForCamera;
@@ -44,13 +46,20 @@ namespace alexshko.colamazle.Entities
 
         private void Start()
         {
-            character = GetComponent<CharacterController>();
+            character = GetComponentInChildren<CharacterController>();
             if (!character)
             {
                 Debug.LogError("missing CharacterController");
             }
-            CameraMoveAngleY = transform.rotation.eulerAngles.y;
-            CharAngleY = transform.rotation.eulerAngles.y;
+
+            anim = GetComponentInChildren<Animator>();
+            if (!anim)
+            {
+                Debug.LogError("Missing animator");
+            }
+            mouseRef = anim.transform;
+
+            CameraMoveAngleY = 0;
             MoveToMake = Vector3.zero;
             gravitySpeed = Vector3.zero;
             jumpSpeed = Vector3.zero;
@@ -63,13 +72,19 @@ namespace alexshko.colamazle.Entities
             CalcCamReferenceObject();
         }
 
+        private void FixedUpdate()
+        {
+            TurnCharacter();
+            MoveCharacter();
+            TurnCamRefObject();
+        }
+
         private void CalcMovementToMake()
         {
             //to make comparison to previous movement vector. will be used, for instance, to check if he reached the maximum height during jump
             prevMovement = MoveToMake;
             MoveToMake = Vector3.zero;
 
-            float InputVal = 0;
             if (GameController.Instance.acceptInputPlayer)
             {
                 //take the Vertical input axis. and also the vertical valuue of the joystick:
@@ -79,11 +94,11 @@ namespace alexshko.colamazle.Entities
             {
                 Debug.Log("Going forward");
                 //if the character stands still and need to turn around, he will start moving only after finished turning.
-                CharAngleY = CamRefObject.rotation.eulerAngles.y;
-                if (speed != 0 || Quaternion.Angle(transform.rotation, Quaternion.Euler(0, CharAngleY, 0)) < 1)
+                //CharAngleY = CamRefObject.rotation.eulerAngles.y;
+                if (Quaternion.Angle(mouseRef.rotation, CamRefObject.rotation) < 1)
                 {
                     Debug.Log("Move to make1: " + transform.forward);
-                    MoveToMake += (InputVal > 0 ? MaxForwardSpeed : MaxBackwardSpeed) * Mathf.Clamp(InputVal, -1, 1) * transform.forward;
+                    MoveToMake += (InputVal > 0 ? MaxForwardSpeed : MaxBackwardSpeed) * Mathf.Clamp(InputVal, -1, 1) * mouseRef.forward;
                 }
             }
 
@@ -136,6 +151,7 @@ namespace alexshko.colamazle.Entities
                         if (curTouch.phase == TouchPhase.Moved || curTouch.phase == TouchPhase.Stationary)
                         {
                             fingerMoveForCamera = curTouch.deltaPosition;
+                            //fingerMoveForCamera = new Vector2(-0.5f, -0.5f);
                             //if he's during run then take only half the aiming speed
                             CameraMoveAngleY += Mathf.Clamp(fingerMoveForCamera.x, -1, 1) * adjustedVerticalAim * Time.deltaTime;
                             break;
@@ -145,30 +161,17 @@ namespace alexshko.colamazle.Entities
             }
         }
 
-        private void FixedUpdate()
-        {
-            TurnCharacter();
-            MoveCharacter();
-            TurnCamRefObject();
-        }
-
         private void TurnCharacter()
         {
-            if (Quaternion.Angle(transform.rotation, Quaternion.Euler(0, CharAngleY,0)) > 1)
+            if (Mathf.Abs(InputVal) > 0.05f && Quaternion.Angle(mouseRef.rotation, CamRefObject.rotation) > 1)
             {
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0,CharAngleY,0), 10*Time.deltaTime);
+                //mouseRef.rotation = Quaternion.Lerp(mouseRef.rotation, CamRefObject.rotation, 10*Time.deltaTime);
+                float yVelocity = 0;
+                float curAngle = mouseRef.rotation.eulerAngles.y;
+                float newAngle = Mathf.SmoothDampAngle(curAngle, CamRefObject.rotation.eulerAngles.y, ref yVelocity, 0.05f);
+                mouseRef.rotation = Quaternion.Euler(new Vector3(0, newAngle, 0));
             }
         }
-
-        private void TurnCamRefObject()
-        {
-            //move the reference
-            if (Quaternion.Angle(CamRefObject.rotation, Quaternion.Euler(0,CameraMoveAngleY,0))> 1)
-            {
-                CamRefObject.rotation = Quaternion.Lerp(CamRefObject.rotation, Quaternion.Euler(0, CameraMoveAngleY, 0), 5*Time.deltaTime);
-            }
-        }
-
         private void MoveCharacter()
         {
             if (MoveToMake != Vector3.zero)
@@ -184,21 +187,34 @@ namespace alexshko.colamazle.Entities
             float sign = Mathf.Sign(MoveToMakeNoGravityLocal.z);
             MakeMoveAnim(sign * MoveToMakeNoGravityLocal.magnitude);
         }
+        private void TurnCamRefObject()
+        {
+            float yVelocity = 0;
+            //move the reference
+            if (CameraMoveAngleY > 1 || CameraMoveAngleY <-1)
+            {
+                float curAngle = CamRefObject.rotation.eulerAngles.y;
+                float newAngle = Mathf.SmoothDampAngle(curAngle, curAngle + CameraMoveAngleY, ref yVelocity, 0.05f);
+                CameraMoveAngleY -= newAngle - curAngle;
+                CamRefObject.rotation = Quaternion.Euler(new Vector3(0, newAngle, 0));
+            }
+        }
+
 
         private void MakeMoveAnim(float speed)
         {
-            character.GetComponent<Animator>().SetFloat("Speed", Mathf.Clamp(speed, -MaxBackwardSpeed, MaxForwardSpeed));
+            anim.SetFloat("Speed", Mathf.Clamp(speed, -MaxBackwardSpeed, MaxForwardSpeed));
         }
 
         private void StartJumpAnim()
         {
-            character.GetComponent<Animator>().SetTrigger("Jump");
+            anim.SetTrigger("Jump");
         }
 
         private void FinshJumpAnim()
         {
             Debug.Log("Finish jump anim");
-            character.GetComponent<Animator>().SetTrigger("FinishJump");
+            anim.SetTrigger("FinishJump");
         }
 
         public void MakeJumpButton()
