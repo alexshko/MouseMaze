@@ -2,6 +2,7 @@
 using UnityEngine;
 using Cinemachine;
 using System.Threading.Tasks;
+using alexshko.colamazle.core;
 
 namespace alexshko.colamazle.Entities
 {
@@ -76,10 +77,14 @@ namespace alexshko.colamazle.Entities
 
         private async Task ShowCameraOnEffect()
         {
+            GameController.Instance.acceptInputPlayer = false;
+
             int curPriority = cameraRef.Priority;
             cameraRef.Priority = int.MaxValue;
             await Task.Delay(waitTime);
             cameraRef.Priority = curPriority;
+
+            GameController.Instance.acceptInputPlayer = true;
         }
 
         public void DeactivateGateway()

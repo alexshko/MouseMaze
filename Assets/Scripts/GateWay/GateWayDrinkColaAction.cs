@@ -31,19 +31,12 @@ namespace alexshko.colamazle.Entities
             MouseyRef.GetComponent<MouseyController>().ColaRef = ColaRef;
             MouseyRef.GetComponent<MouseyController>().MouseHandRef = MouseHandRef;
 
-            Animator anim = MouseyRef.GetComponent<Animator>();
+            Animator anim = MouseyRef.GetComponentInChildren<Animator>();
             if (anim)
             {
                 anim.SetTrigger("PickUp");
             }
         }
-
-        //private void GrabCola()
-        //{
-        //    ColaRef.parent = MouseHandRef;
-        //    ColaRef.localPosition = Vector3.zero;
-        //    ColaRef.localRotation = Quaternion.Euler(0, 0, 90);
-        //}
 
         private async Task ShowCameraOnEffect()
         {

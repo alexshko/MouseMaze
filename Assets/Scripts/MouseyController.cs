@@ -92,6 +92,10 @@ namespace alexshko.colamazle.Entities
                 //take the Vertical input axis. and also the vertical valuue of the joystick:
                 InputVal = Input.GetAxis("Vertical") + GameController.Instance.JoystickValue;
             }
+            else
+            {
+                InputVal = 0;
+            }
             //if there is joystick moemvent, then needs to go forward.
             //if it starts from standing (no speed), then it shoud wait for the turn to finsh first.
             if (Mathf.Abs(InputVal) > 0.05f)
