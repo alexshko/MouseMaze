@@ -15782,7 +15782,7 @@ PrefabInstance:
     - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
       propertyPath: horizontalCamMinSpeed
-      value: 40
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
