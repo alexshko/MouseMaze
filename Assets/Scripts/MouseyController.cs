@@ -20,6 +20,7 @@ namespace alexshko.colamazle.Entities
         public float EpsilonPlayerTurnCheck = 1.0f;
         public float MinDistanceOFSwipe = 3;
         public float timeForPlayerTurn = 0.04f;
+        public float timeForCamTurn = 0.1f;
         public Transform CamRefObject;
 
         [SerializeField]
@@ -177,7 +178,7 @@ namespace alexshko.colamazle.Entities
             {
                 float yVelocity = 0;
                 float curAngle = mouseRef.rotation.eulerAngles.y;
-                float newAngle = Mathf.SmoothDampAngle(curAngle, CamRefObject.rotation.eulerAngles.y, ref yVelocity, timeForPlayerTurn);
+                float newAngle = Mathf.SmoothDampAngle(curAngle, CamRefObject.rotation.eulerAngles.y, ref yVelocity, timeForPlayerTurn,Mathf.Infinity,Time.fixedDeltaTime);
                 mouseRef.rotation = Quaternion.Euler(new Vector3(0, newAngle, 0));
             }
         }
@@ -202,7 +203,7 @@ namespace alexshko.colamazle.Entities
             if (CameraMoveAngleY > MinDistanceOFSwipe || CameraMoveAngleY <-MinDistanceOFSwipe)
             {
                 float curAngle = CamRefObject.rotation.eulerAngles.y;
-                float newAngle = Mathf.SmoothDampAngle(curAngle, curAngle + CameraMoveAngleY, ref yVelocity, timeForPlayerTurn);
+                float newAngle = Mathf.SmoothDampAngle(curAngle, curAngle + CameraMoveAngleY, ref yVelocity, timeForCamTurn, Mathf.Infinity, Time.fixedDeltaTime);
                 CameraMoveAngleY -= newAngle - curAngle;
                 CamRefObject.rotation = Quaternion.Euler(new Vector3(0, newAngle, 0));
             }
