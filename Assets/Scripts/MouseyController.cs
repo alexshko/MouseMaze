@@ -17,7 +17,8 @@ namespace alexshko.colamazle.Entities
         public int horizontalCamStandSpeed = 6;
         public int horizontalCamMinSpeed = 2;
         public int horizontalCamMaxSpeed = 3;
-        public float EpsilonForCamTurnCheck = 1.0f;
+        public float EpsilonPlayerTurnCheck = 1.0f;
+        public float MinDistanceOFSwipe = 3;
         public float timeForPlayerTurn = 0.04f;
         public Transform CamRefObject;
 
@@ -100,7 +101,7 @@ namespace alexshko.colamazle.Entities
             //if it starts from standing (no speed), then it shoud wait for the turn to finsh first.
             if (Mathf.Abs(InputVal) > 0.05f)
             {
-                if ((speed == 0 && Quaternion.Angle(mouseRef.rotation, CamRefObject.rotation) < EpsilonForCamTurnCheck) || speed!=0)
+                if ((speed == 0 && Quaternion.Angle(mouseRef.rotation, CamRefObject.rotation) < EpsilonPlayerTurnCheck) || speed!=0)
                 {
                     Debug.Log("Move to make1: " + mouseRef.forward);
                     MoveToMake += (InputVal > 0 ? MaxForwardSpeed : MaxBackwardSpeed) * Mathf.Clamp(InputVal, -1, 1) * mouseRef.forward;
@@ -164,11 +165,15 @@ namespace alexshko.colamazle.Entities
                     }
                 }
             }
+            else
+            {
+                CameraMoveAngleY = 0;
+            }
         }
 
         private void TurnCharacter()
         {
-            if (Mathf.Abs(InputVal) > 0.05f && Quaternion.Angle(mouseRef.rotation, CamRefObject.rotation) > EpsilonForCamTurnCheck)
+            if (Mathf.Abs(InputVal) > 0.05f && Quaternion.Angle(mouseRef.rotation, CamRefObject.rotation) > EpsilonPlayerTurnCheck)
             {
                 float yVelocity = 0;
                 float curAngle = mouseRef.rotation.eulerAngles.y;
@@ -194,7 +199,7 @@ namespace alexshko.colamazle.Entities
         {
             float yVelocity = 0;
             //move the reference
-            if (CameraMoveAngleY > 1 || CameraMoveAngleY <-1)
+            if (CameraMoveAngleY > MinDistanceOFSwipe || CameraMoveAngleY <-MinDistanceOFSwipe)
             {
                 float curAngle = CamRefObject.rotation.eulerAngles.y;
                 float newAngle = Mathf.SmoothDampAngle(curAngle, curAngle + CameraMoveAngleY, ref yVelocity, timeForPlayerTurn);
