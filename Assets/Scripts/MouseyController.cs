@@ -18,7 +18,6 @@ namespace alexshko.colamazle.Entities
         public int horizontalCamMinSpeed = 2;
         public int horizontalCamMaxSpeed = 3;
         public float EpsilonAngleCheck = 1.0f;
-        public float MinDistanceOFSwipe = 3;
         public float timeForPlayerTurn = 0.04f;
         public float timeForCamTurn = 0.1f;
         public Transform CamRefObject;
@@ -44,6 +43,11 @@ namespace alexshko.colamazle.Entities
         private float CameraMoveAngleY = 0;
         private float CameraMoveAngleYTotal = 0;
         private int fingerIdCameraControl = -1;
+        [SerializeField]
+        private float MinDistanceOFSwipe
+        {
+            get => Screen.width / 150;
+        }
         private float adjustedVerticalAim
         {
             get => speed==0? horizontalCamStandSpeed : Mathf.Lerp(horizontalCamMaxSpeed, horizontalCamMinSpeed, speed / MaxForwardSpeed);
@@ -69,6 +73,10 @@ namespace alexshko.colamazle.Entities
             gravitySpeed = Vector3.zero;
             isJumping = false;
             fingerIdCameraControl = -1;
+
+            Debug.LogFormat("MinDistanceOFSwipe: {0}", MinDistanceOFSwipe);
+
+
         }
 
         private void Update()
