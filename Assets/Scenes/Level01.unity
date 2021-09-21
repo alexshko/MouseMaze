@@ -15777,12 +15777,12 @@ PrefabInstance:
     - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
       propertyPath: timeForPlayerTurn
-      value: 0.07
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
       propertyPath: MinDistanceOFSwipe
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
@@ -15792,17 +15792,17 @@ PrefabInstance:
     - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
       propertyPath: horizontalCamMinSpeed
-      value: 90
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
       propertyPath: EpsilonPlayerTurnCheck
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
       propertyPath: horizontalCamStandSpeed
-      value: 150
+      value: 110
       objectReference: {fileID: 0}
     - target: {fileID: 6459144579177980619, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
