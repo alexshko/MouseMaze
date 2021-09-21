@@ -34,15 +34,16 @@ namespace alexshko.colamazle.Entities
         private Vector3 MoveToMake;
         private Vector3 MoveToMakeNoGravityLocal;
         private Vector3 gravitySpeed = Vector3.zero;
-        private Vector3 jumpSpeed = Vector3.zero;
         private bool prevGrounded = false;
         private bool isJumping = false;
         private bool isAboutToJump = false; //for requesting to jump by button.
-        private float CameraMoveAngleY = 0;
-        private float InputVal = 0;
 
+        private float InputVal = 0;
         private bool isCameraMove;
         private Vector2 fingerMoveForCamera;
+        private float CameraMoveAngleY = 0;
+        private float CameraMoveAngleYTotal = 0;
+        private int fingerIdCameraControl = -1;
         private float adjustedVerticalAim
         {
             get => speed==0? horizontalCamStandSpeed : Mathf.Lerp(horizontalCamMaxSpeed, horizontalCamMinSpeed, speed / MaxForwardSpeed);
@@ -63,11 +64,11 @@ namespace alexshko.colamazle.Entities
             }
             mouseRef = anim.transform;
 
-            CameraMoveAngleY = 0;
+            CameraMoveAngleYTotal = 0;
             MoveToMake = Vector3.zero;
             gravitySpeed = Vector3.zero;
-            jumpSpeed = Vector3.zero;
             isJumping = false;
+            fingerIdCameraControl = -1;
         }
 
         private void Update()
@@ -153,23 +154,47 @@ namespace alexshko.colamazle.Entities
             {
                 foreach (Touch curTouch in Input.touches)
                 {
-                    if (curTouch.fingerId != GameController.Instance.JoystickTouchId)
+                    if (checkIfCameraMoveTouch(curTouch))
                     {
-                        if (curTouch.phase == TouchPhase.Moved || curTouch.phase == TouchPhase.Stationary)
+                        if (curTouch.phase == TouchPhase.Began)
+                        {
+                            fingerIdCameraControl = curTouch.fingerId;
+                        }
+                        else if (curTouch.phase == TouchPhase.Ended || curTouch.phase == TouchPhase.Canceled)
+                        {
+                            fingerIdCameraControl = -1;
+                        }
+                        else if (curTouch.phase == TouchPhase.Moved)
                         {
                             fingerMoveForCamera = curTouch.deltaPosition;
-                            //fingerMoveForCamera = new Vector2(-0.5f, -0.5f);
-                            //if he's during run then take only half the aiming speed
                             CameraMoveAngleY += Mathf.Clamp(fingerMoveForCamera.x, -1, 1) * adjustedVerticalAim * Time.deltaTime;
+                            //if the angley has passed the MinAngle only then start adding to the total, so it will turn:
+                            if (Mathf.Abs(CameraMoveAngleY) > MinDistanceOFSwipe)
+                            {
+                                CameraMoveAngleYTotal += Mathf.Clamp(fingerMoveForCamera.x, -1, 1) * adjustedVerticalAim * Time.deltaTime;
+                            }
                             break;
+                        }
+                        else
+                        {
+                            CameraMoveAngleY = 0;
                         }
                     }
                 }
             }
             else
             {
-                CameraMoveAngleY = 0;
+                CameraMoveAngleYTotal = 0;
             }
+        }
+
+        private bool checkIfCameraMoveTouch(Touch curTouch)
+        {
+            if (fingerIdCameraControl != -1)
+            {
+                return (curTouch.fingerId == fingerIdCameraControl);
+            }
+            return (curTouch.fingerId != GameController.Instance.JoystickTouchId);
         }
 
         private void TurnCharacter()
@@ -200,11 +225,11 @@ namespace alexshko.colamazle.Entities
         {
             float yVelocity = 0;
             //move the reference
-            if (CameraMoveAngleY > MinDistanceOFSwipe || CameraMoveAngleY <-MinDistanceOFSwipe)
+            if (CameraMoveAngleYTotal > MinDistanceOFSwipe || CameraMoveAngleYTotal <-MinDistanceOFSwipe)
             {
                 float curAngle = CamRefObject.rotation.eulerAngles.y;
-                float newAngle = Mathf.SmoothDampAngle(curAngle, curAngle + CameraMoveAngleY, ref yVelocity, timeForCamTurn, Mathf.Infinity, Time.fixedDeltaTime);
-                CameraMoveAngleY -= newAngle - curAngle;
+                float newAngle = Mathf.SmoothDampAngle(curAngle, curAngle + CameraMoveAngleYTotal, ref yVelocity, timeForCamTurn, Mathf.Infinity, Time.fixedDeltaTime);
+                CameraMoveAngleYTotal -= newAngle - curAngle;
                 CamRefObject.rotation = Quaternion.Euler(new Vector3(0, newAngle, 0));
             }
         }
