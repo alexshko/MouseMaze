@@ -21,6 +21,7 @@ namespace alexshko.colamazle.Entities
         public float timeForPlayerTurn = 0.04f;
         public float timeForCamTurn = 0.1f;
         public Transform CamRefObject;
+        public float MinDistanceOFSwipe = 0.002f;
 
         [SerializeField]
         private float speed => MoveToMakeNoGravityLocal.magnitude;
@@ -44,10 +45,6 @@ namespace alexshko.colamazle.Entities
         private float CameraMoveAngleYTotal = 0;
         private int fingerIdCameraControl = -1;
         [SerializeField]
-        private float MinDistanceOFSwipe
-        {
-            get => Screen.width / 150;
-        }
         private float adjustedVerticalAim
         {
             get => speed==0? horizontalCamStandSpeed : Mathf.Lerp(horizontalCamMaxSpeed, horizontalCamMinSpeed, speed / MaxForwardSpeed);
@@ -174,9 +171,9 @@ namespace alexshko.colamazle.Entities
                         }
                         else if (curTouch.phase == TouchPhase.Moved)
                         {
-                            fingerMoveForCamera = curTouch.deltaPosition;
+                            fingerMoveForCamera = curTouch.deltaPosition / Screen.width;
                             Debug.LogFormat("Touch input x: {0}", fingerMoveForCamera.x);
-                            CameraMoveAngleY += fingerMoveForCamera.x;
+                            CameraMoveAngleY += Mathf.Clamp(fingerMoveForCamera.x, -1, 1);
                             //if the angley has passed the MinAngle only then start adding to the total, so it will turn:
                             if (Mathf.Abs(CameraMoveAngleY) > MinDistanceOFSwipe)
                             {

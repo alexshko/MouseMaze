@@ -15787,17 +15787,17 @@ PrefabInstance:
     - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
       propertyPath: MinDistanceOFSwipe
-      value: 6.5
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
       propertyPath: horizontalCamMaxSpeed
-      value: 110
+      value: 11000
       objectReference: {fileID: 0}
     - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
       propertyPath: horizontalCamMinSpeed
-      value: 95
+      value: 8000
       objectReference: {fileID: 0}
     - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
@@ -15807,7 +15807,7 @@ PrefabInstance:
     - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
       propertyPath: horizontalCamStandSpeed
-      value: 110
+      value: 11500
       objectReference: {fileID: 0}
     - target: {fileID: 6459144579177980619, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
