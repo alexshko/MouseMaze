@@ -17,7 +17,7 @@ namespace alexshko.colamazle.Entities
         public int horizontalCamStandSpeed = 6;
         public int horizontalCamMinSpeed = 2;
         public int horizontalCamMaxSpeed = 3;
-        public float EpsilonPlayerTurnCheck = 1.0f;
+        public float EpsilonAngleCheck = 1.0f;
         public float MinDistanceOFSwipe = 3;
         public float timeForPlayerTurn = 0.04f;
         public float timeForCamTurn = 0.1f;
@@ -103,7 +103,7 @@ namespace alexshko.colamazle.Entities
             //if it starts from standing (no speed), then it shoud wait for the turn to finsh first.
             if (Mathf.Abs(InputVal) > 0.05f)
             {
-                if ((speed == 0 && Quaternion.Angle(mouseRef.rotation, CamRefObject.rotation) < EpsilonPlayerTurnCheck) || speed!=0)
+                if ((speed == 0 && Quaternion.Angle(mouseRef.rotation, CamRefObject.rotation) < EpsilonAngleCheck) || speed!=0)
                 {
                     Debug.Log("Move to make1: " + mouseRef.forward);
                     MoveToMake += (InputVal > 0 ? MaxForwardSpeed : MaxBackwardSpeed) * Mathf.Clamp(InputVal, -1, 1) * mouseRef.forward;
@@ -168,7 +168,7 @@ namespace alexshko.colamazle.Entities
                         {
                             fingerMoveForCamera = curTouch.deltaPosition;
                             Debug.LogFormat("Touch input x: {0}", fingerMoveForCamera.x);
-                            CameraMoveAngleY += Mathf.Clamp(fingerMoveForCamera.x, -1, 1) * adjustedVerticalAim * Time.deltaTime;
+                            CameraMoveAngleY += fingerMoveForCamera.x;
                             //if the angley has passed the MinAngle only then start adding to the total, so it will turn:
                             if (Mathf.Abs(CameraMoveAngleY) > MinDistanceOFSwipe)
                             {
@@ -201,7 +201,7 @@ namespace alexshko.colamazle.Entities
 
         private void TurnCharacter()
         {
-            if (Mathf.Abs(InputVal) > 0.05f && Quaternion.Angle(mouseRef.rotation, CamRefObject.rotation) > EpsilonPlayerTurnCheck)
+            if (Mathf.Abs(InputVal) > 0.05f && Quaternion.Angle(mouseRef.rotation, CamRefObject.rotation) > EpsilonAngleCheck)
             {
                 float yVelocity = 0;
                 float curAngle = mouseRef.rotation.eulerAngles.y;
@@ -227,7 +227,7 @@ namespace alexshko.colamazle.Entities
         {
             float yVelocity = 0;
             //move the reference
-            if (CameraMoveAngleYTotal > MinDistanceOFSwipe || CameraMoveAngleYTotal <-MinDistanceOFSwipe)
+            if (CameraMoveAngleYTotal > EpsilonAngleCheck || CameraMoveAngleYTotal <-EpsilonAngleCheck)
             {
                 float curAngle = CamRefObject.rotation.eulerAngles.y;
                 float newAngle = Mathf.SmoothDampAngle(curAngle, curAngle + CameraMoveAngleYTotal, ref yVelocity, timeForCamTurn, Mathf.Infinity, Time.fixedDeltaTime);

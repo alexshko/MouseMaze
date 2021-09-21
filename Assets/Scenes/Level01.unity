@@ -15772,7 +15772,12 @@ PrefabInstance:
     - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
       propertyPath: timeForCamTurn
-      value: 0.15
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
+        type: 3}
+      propertyPath: EpsilonAngleCheck
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
@@ -15782,17 +15787,17 @@ PrefabInstance:
     - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
       propertyPath: MinDistanceOFSwipe
-      value: 2.2
+      value: 6.5
       objectReference: {fileID: 0}
     - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
       propertyPath: horizontalCamMaxSpeed
-      value: 150
+      value: 110
       objectReference: {fileID: 0}
     - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
       propertyPath: horizontalCamMinSpeed
-      value: 110
+      value: 95
       objectReference: {fileID: 0}
     - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
@@ -15802,7 +15807,7 @@ PrefabInstance:
     - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
       propertyPath: horizontalCamStandSpeed
-      value: 150
+      value: 110
       objectReference: {fileID: 0}
     - target: {fileID: 6459144579177980619, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
