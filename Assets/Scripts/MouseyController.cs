@@ -167,11 +167,13 @@ namespace alexshko.colamazle.Entities
                         else if (curTouch.phase == TouchPhase.Moved)
                         {
                             fingerMoveForCamera = curTouch.deltaPosition;
+                            Debug.LogFormat("Touch input x: {0}", fingerMoveForCamera.x);
                             CameraMoveAngleY += Mathf.Clamp(fingerMoveForCamera.x, -1, 1) * adjustedVerticalAim * Time.deltaTime;
                             //if the angley has passed the MinAngle only then start adding to the total, so it will turn:
                             if (Mathf.Abs(CameraMoveAngleY) > MinDistanceOFSwipe)
                             {
                                 CameraMoveAngleYTotal += Mathf.Clamp(fingerMoveForCamera.x, -1, 1) * adjustedVerticalAim * Time.deltaTime;
+                                Debug.LogFormat("camera Move: {0}", CameraMoveAngleY);
                             }
                             break;
                         }
