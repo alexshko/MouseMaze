@@ -71,8 +71,7 @@ namespace alexshko.colamazle.Entities
             isJumping = false;
             fingerIdCameraControl = -1;
 
-            Debug.LogFormat("MinDistanceOFSwipe: {0}", MinDistanceOFSwipe);
-
+            Debug.LogFormat("Screen size: {0}", Screen.width);
 
         }
 
@@ -175,7 +174,7 @@ namespace alexshko.colamazle.Entities
                             Debug.LogFormat("Touch input x: {0}", fingerMoveForCamera.x);
                             CameraMoveAngleY += Mathf.Clamp(fingerMoveForCamera.x, -1, 1);
                             //if the angley has passed the MinAngle only then start adding to the total, so it will turn:
-                            if (Mathf.Abs(CameraMoveAngleY) > MinDistanceOFSwipe)
+                            if (Mathf.Abs(CameraMoveAngleY) > MinDistanceOFSwipe/Screen.width)
                             {
                                 CameraMoveAngleYTotal += Mathf.Clamp(fingerMoveForCamera.x, -1, 1) * adjustedVerticalAim * Time.deltaTime;
                                 Debug.LogFormat("camera Move: {0}", CameraMoveAngleY);
