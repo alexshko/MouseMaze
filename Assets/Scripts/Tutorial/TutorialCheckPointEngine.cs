@@ -9,11 +9,11 @@ public class TutorialCheckPointEngine : MonoBehaviour
 {
     public int waitTimeMillis;
     public GameObject UIMessageToShowRef;
+    public GameObject CanvasObjectAnimations;
 
     private Text txtRef;
-    private Animator anim;
-    //protected Task currMessage;
-    //protected CancellationTokenSource tokenSource2;
+    private Animator messageAnim;
+    private Animator tutorialAnim;
     protected Coroutine curMessage;
 
     private static TutorialCheckPointEngine instance;
@@ -37,10 +37,11 @@ public class TutorialCheckPointEngine : MonoBehaviour
             Debug.LogError("No text component to show");
         }
         curMessage = null;
-        anim = UIMessageToShowRef.GetComponent<Animator>();
+        messageAnim = UIMessageToShowRef.GetComponent<Animator>();
+        tutorialAnim = CanvasObjectAnimations.GetComponent<Animator>();
     }
 
-    public static void ShowMessageUI(string msg)
+    public static void ActivateCheckPoint(string msg, string animationTrig="")
     {
         if (instance.curMessage != null)
         {
@@ -48,15 +49,19 @@ public class TutorialCheckPointEngine : MonoBehaviour
         }
         instance.curMessage = instance.StartCoroutine(instance.ShowMessage(msg));
         
+        if (animationTrig != "")
+        {
+            instance.tutorialAnim.SetTrigger(animationTrig);
+        }
     }
 
     private IEnumerator ShowMessage(string msg)
     {
         UIMessageToShowRef.SetActive(true);
         txtRef.text = msg;
-        anim.SetBool("isShowMessage", true);
+        messageAnim.SetBool("isShowMessage", true);
         yield return new WaitForSeconds(waitTimeMillis /1000 / 2);
-        anim.SetBool("isShowMessage", false);
+        messageAnim.SetBool("isShowMessage", false);
         yield return new WaitForSeconds(waitTimeMillis / 1000 / 2);
         UIMessageToShowRef.gameObject.SetActive(false);
         yield return null;
