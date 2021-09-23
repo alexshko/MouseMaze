@@ -4170,7 +4170,7 @@ PrefabInstance:
     - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
         type: 3}
       propertyPath: messageToShow
-      value: Use the left corner joystick to move forward and backward
+      value: Walk Forward
       objectReference: {fileID: 0}
     - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
         type: 3}
@@ -15896,6 +15896,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 405925524457234343, guid: 3e79baa318741cf4bafd715f01286b97,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.08044599
+      objectReference: {fileID: 0}
+    - target: {fileID: 405925524457234343, guid: 3e79baa318741cf4bafd715f01286b97,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.044646073
+      objectReference: {fileID: 0}
     - target: {fileID: 6459144579177980617, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
       propertyPath: m_Name
