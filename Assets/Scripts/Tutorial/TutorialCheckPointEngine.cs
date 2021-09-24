@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using alexshko.colamazle.core;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,28 +41,51 @@ namespace alexshko.colamazle.tutorial
             tutorialAnim = CanvasObjectAnimations.GetComponent<Animator>();
         }
 
-        public void ActivateCheckPoint(string msg, string animationTrig = "")
+        public void ActivateCheckPoint(TutorialStep[] steps, bool acceptInput)
         {
+            GameController.Instance.acceptInputPlayer = acceptInput;
+
             if (curMessage != null)
             {
                 StopCoroutine(curMessage);
             }
-            curMessage = StartCoroutine(ShowMessage(msg));
+            curMessage = StartCoroutine(ShowMessages(steps));
 
-            if (animationTrig != "")
-            {
-                tutorialAnim.SetTrigger(animationTrig);
-            }
+            GameController.Instance.acceptInputPlayer = true;
+
+
         }
 
-        private IEnumerator ShowMessage(string msg)
+        private IEnumerator ShowMessages(TutorialStep[] steps)
         {
             UIMessageToShowRef.SetActive(true);
-            txtRef.text = msg;
-            messageAnim.SetBool("isShowMessage", true);
-            yield return new WaitForSeconds(waitTimeMillis / 1000 / 2);
-            messageAnim.SetBool("isShowMessage", false);
-            yield return new WaitForSeconds(waitTimeMillis / 1000 / 2);
+            foreach (TutorialStep step in steps)
+            {
+                //if there is animation in this step, the step wait time should include it:
+                if (step.canvasAnimationTrigger!= "")
+                {
+                    tutorialAnim.SetTrigger(step.canvasAnimationTrigger);
+                }
+
+                //show message with animation. the animation takes waitTimeMillis milliseconds:
+                txtRef.text = step.messageToShow;
+                messageAnim.SetBool("isShowMessage", true);
+                yield return new WaitForSeconds(waitTimeMillis / 1000 / 2);
+                messageAnim.SetBool("isShowMessage", false);
+                yield return new WaitForSeconds(waitTimeMillis / 1000 / 2);
+
+                
+                if (tutorialAnim.GetAnimatorTransitionInfo(0).fullPathHash == Animator.StringToHash(step.canvasAnimationTrigger))
+                {
+                    Debug.Log("playing the transition");
+                }
+
+                //if the passed time is less then the required time, complete the waiting. otherwise go to next tutorial step.
+                if (waitTimeMillis < step.millisToStep)
+                {
+                    yield return new WaitForSeconds(step.millisToStep - waitTimeMillis);
+                }
+            }
             UIMessageToShowRef.gameObject.SetActive(false);
             yield return null;
         }

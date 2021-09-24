@@ -1,10 +1,20 @@
 ﻿using UnityEngine;
 namespace alexshko.colamazle.tutorial
 {
-    public class TutorialCheckPoint : MonoBehaviour
+    [System.Serializable]
+    public struct TutorialStep
     {
         public string messageToShow;
-        public string canvasAnimationTrigger = "";
+        public string canvasAnimationTrigger;
+        public int millisToStep;
+    }
+    public class TutorialCheckPoint : MonoBehaviour
+    {
+        //public string messageToShow;
+        //public string canvasAnimationTrigger = "";
+        public TutorialStep[] steps;
+        public bool acceptInputFromPlayer = true;
+
         private bool isVisited = false;
 
         private static TutorialCheckPointEngine tutorial
@@ -16,7 +26,7 @@ namespace alexshko.colamazle.tutorial
         {
             if (other.tag == "Player" && !isVisited)
             {
-                tutorial.ActivateCheckPoint(messageToShow, canvasAnimationTrigger);
+                tutorial.ActivateCheckPoint(steps, acceptInputFromPlayer);
                 isVisited = true;
             }
         }
