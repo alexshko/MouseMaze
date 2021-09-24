@@ -7,7 +7,7 @@ namespace alexshko.colamazle.tutorial
 {
     public class TutorialCheckPointEngine : MonoBehaviour
     {
-        public int waitTimeMillis;
+        public float waitTimeSeconds = 0.67f;
         public GameObject UIMessageToShowRef;
         public GameObject CanvasObjectAnimations;
 
@@ -18,14 +18,10 @@ namespace alexshko.colamazle.tutorial
 
         public static TutorialCheckPointEngine instance;
 
-        private void Awake()
-        {
-            instance = this;
-        }
-
         // Start is called before the first frame update
         void Start()
         {
+            instance = this;
             if (UIMessageToShowRef == null)
             {
                 Debug.LogError("Missing reference to MessageUI");
@@ -70,9 +66,7 @@ namespace alexshko.colamazle.tutorial
                 //show message with animation. the animation takes waitTimeMillis milliseconds:
                 txtRef.text = step.messageToShow;
                 messageAnim.SetBool("isShowMessage", true);
-                yield return new WaitForSeconds(waitTimeMillis / 1000 / 2);
-                messageAnim.SetBool("isShowMessage", false);
-                yield return new WaitForSeconds(waitTimeMillis / 1000 / 2);
+                yield return new WaitForSeconds(waitTimeSeconds / 2);
 
                 //if the animation is still playing, wait for it to finish.
                 while (tutorialAnim.GetCurrentAnimatorStateInfo(0).IsName(step.canvasAnimationTrigger))
@@ -81,11 +75,11 @@ namespace alexshko.colamazle.tutorial
                     yield return new WaitForSeconds(0.1f);
                 }
 
-                //if the passed time is less then the required time, complete the waiting. otherwise go to next tutorial step.
-                //if (waitTimeMillis < step.millisToStep)
-                //{
-                //    yield return new WaitForSeconds(step.millisToStep - waitTimeMillis);
-                //}
+                messageAnim.SetBool("isShowMessage", false);
+                yield return new WaitForSeconds(waitTimeSeconds / 2);
+
+                //wait awhile between steps.
+                yield return new WaitForSeconds(0.2f);
             }
             UIMessageToShowRef.gameObject.SetActive(false);
             yield return null;

@@ -9389,7 +9389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ab0fcea1f26794780b0ca864eaab0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTimeMillis: 6000
+  waitTimeSeconds: 0.66
   UIMessageToShowRef: {fileID: 3851669679955812948}
   CanvasObjectAnimations: {fileID: 1537022258}
 --- !u!1001 &1507853431
@@ -14766,6 +14766,11 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7205345403521413827, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 7205345404285661609, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -15712,7 +15717,7 @@ PrefabInstance:
     - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
         type: 3}
       propertyPath: steps.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
         type: 3}
@@ -15736,8 +15741,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
         type: 3}
+      propertyPath: steps.Array.data[1].messageToShow
+      value: Go Backwards
+      objectReference: {fileID: 0}
+    - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
+        type: 3}
       propertyPath: steps.Array.data[0].canvasAnimationTrigger
       value: SwipeUp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
+        type: 3}
+      propertyPath: steps.Array.data[1].canvasAnimationTrigger
+      value: SwipeDown
       objectReference: {fileID: 0}
     - target: {fileID: 8847294581423924602, guid: 2b423beafe3823a42822b42670ec1035,
         type: 3}

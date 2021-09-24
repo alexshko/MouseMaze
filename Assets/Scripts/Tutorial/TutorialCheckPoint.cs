@@ -10,8 +10,6 @@ namespace alexshko.colamazle.tutorial
     }
     public class TutorialCheckPoint : MonoBehaviour
     {
-        //public string messageToShow;
-        //public string canvasAnimationTrigger = "";
         public TutorialStep[] steps;
         public bool acceptInputFromPlayer = true;
 
@@ -22,9 +20,17 @@ namespace alexshko.colamazle.tutorial
             get => TutorialCheckPointEngine.instance;
         }
 
+        private void Start()
+        {
+            if (tutorial == null)
+            {
+                Debug.Log("Missing Tutorial module. will not show tutorial");
+            }
+        }
+
         private void OnTriggerEnter(Collider other)
         {
-            if (other.tag == "Player" && !isVisited)
+            if (other.tag == "Player" && !isVisited && tutorial!=null)
             {
                 tutorial.ActivateCheckPoint(steps, acceptInputFromPlayer);
                 isVisited = true;
