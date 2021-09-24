@@ -46,15 +46,13 @@ namespace alexshko.colamazle.tutorial
                 StopCoroutine(curMessage);
             }
             curMessage = StartCoroutine(ShowMessages(steps));
-
-            GameController.Instance.acceptInputPlayer = true;
-
-
         }
 
         private IEnumerator ShowMessages(TutorialStep[] steps)
         {
             UIMessageToShowRef.SetActive(true);
+            tutorialAnim.enabled = true;
+
             foreach (TutorialStep step in steps)
             {
                 //if there is animation in this step, the step wait time should include it:
@@ -81,7 +79,11 @@ namespace alexshko.colamazle.tutorial
                 //wait awhile between steps.
                 yield return new WaitForSeconds(0.2f);
             }
+
             UIMessageToShowRef.gameObject.SetActive(false);
+            //release controll at the end of coroutine, just in case it was taken.
+            GameController.Instance.acceptInputPlayer = true;
+            tutorialAnim.enabled = false;
             yield return null;
         }
     }
