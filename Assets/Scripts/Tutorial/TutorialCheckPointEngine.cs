@@ -74,17 +74,18 @@ namespace alexshko.colamazle.tutorial
                 messageAnim.SetBool("isShowMessage", false);
                 yield return new WaitForSeconds(waitTimeMillis / 1000 / 2);
 
-                
-                if (tutorialAnim.GetAnimatorTransitionInfo(0).fullPathHash == Animator.StringToHash(step.canvasAnimationTrigger))
+                //if the animation is still playing, wait for it to finish.
+                while (tutorialAnim.GetCurrentAnimatorStateInfo(0).IsName(step.canvasAnimationTrigger))
                 {
-                    Debug.Log("playing the transition");
+                    Debug.Log("still playing the transition");
+                    yield return new WaitForSeconds(0.1f);
                 }
 
                 //if the passed time is less then the required time, complete the waiting. otherwise go to next tutorial step.
-                if (waitTimeMillis < step.millisToStep)
-                {
-                    yield return new WaitForSeconds(step.millisToStep - waitTimeMillis);
-                }
+                //if (waitTimeMillis < step.millisToStep)
+                //{
+                //    yield return new WaitForSeconds(step.millisToStep - waitTimeMillis);
+                //}
             }
             UIMessageToShowRef.gameObject.SetActive(false);
             yield return null;

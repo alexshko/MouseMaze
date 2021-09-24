@@ -6,7 +6,7 @@ namespace alexshko.colamazle.tutorial
     {
         public string messageToShow;
         public string canvasAnimationTrigger;
-        public int millisToStep;
+        //public int millisToStep;
     }
     public class TutorialCheckPoint : MonoBehaviour
     {
