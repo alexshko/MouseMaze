@@ -1,19 +1,24 @@
-﻿using System.Threading.Tasks;
-using UnityEngine;
-using UnityEngine.UI;
-
-public class TutorialCheckPoint : MonoBehaviour
+﻿using UnityEngine;
+namespace alexshko.colamazle.tutorial
 {
-    public string messageToShow;
-    public string canvasAnimationTrigger="";
-    private bool isVisited = false;
-
-    private void OnTriggerEnter(Collider other)
+    public class TutorialCheckPoint : MonoBehaviour
     {
-        if (other.tag == "Player" && !isVisited)
+        public string messageToShow;
+        public string canvasAnimationTrigger = "";
+        private bool isVisited = false;
+
+        private static TutorialCheckPointEngine tutorial
         {
-            TutorialCheckPointEngine.ActivateCheckPoint(messageToShow, canvasAnimationTrigger);
-            isVisited = true;
+            get => TutorialCheckPointEngine.instance;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.tag == "Player" && !isVisited)
+            {
+                tutorial.ActivateCheckPoint(messageToShow, canvasAnimationTrigger);
+                isVisited = true;
+            }
         }
     }
 }
