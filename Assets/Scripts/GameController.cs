@@ -116,10 +116,16 @@ namespace alexshko.colamazle.core
 
         private void OnDestroy()
         {
-            listOfGateWays.Clear();
-            listOfGateWays = null;
-            cheeseList.Clear();
-            cheeseList = null;
+            if (listOfGateWays != null)
+            {
+                listOfGateWays.Clear();
+                listOfGateWays = null;
+            }
+            if (cheeseList != null)
+            {
+                cheeseList.Clear();
+                cheeseList = null;
+            }
         }
     }
 }
