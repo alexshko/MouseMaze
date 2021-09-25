@@ -6857,7 +6857,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1052509456}
-  m_LocalRotation: {x: 1.3034695e-11, y: 0.99990207, z: -0.013995896, w: 9.312314e-10}
+  m_LocalRotation: {x: -1.3729897e-18, y: 0.99990207, z: -0.013995897, w: -5.5489406e-17}
   m_LocalPosition: {x: -1980.973, y: -929.8509, z: 102.97946}
   m_LocalScale: {x: 1.2972974, y: 1.2972975, z: 1.2972974}
   m_Children:
@@ -14956,7 +14956,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2729632149576666}
-  m_LocalRotation: {x: 1.3034695e-11, y: 0.99990207, z: -0.013995896, w: 9.312314e-10}
+  m_LocalRotation: {x: -1.3729897e-18, y: 0.99990207, z: -0.013995897, w: -5.5489406e-17}
   m_LocalPosition: {x: -47, y: 3.24, z: 79.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -15014,12 +15014,12 @@ PrefabInstance:
     - target: {fileID: 719491760195130403, guid: c15f6c1447faadc4db9889cc1e82d406,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -9.312314e-10
+      value: 5.5489406e-17
       objectReference: {fileID: 0}
     - target: {fileID: 719491760195130403, guid: c15f6c1447faadc4db9889cc1e82d406,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -1.3034695e-11
+      value: 1.3729897e-18
       objectReference: {fileID: 0}
     - target: {fileID: 719491760195130403, guid: c15f6c1447faadc4db9889cc1e82d406,
         type: 3}
@@ -15029,7 +15029,7 @@ PrefabInstance:
     - target: {fileID: 719491760195130403, guid: c15f6c1447faadc4db9889cc1e82d406,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.013995896
+      value: -0.013995897
       objectReference: {fileID: 0}
     - target: {fileID: 719491760195130403, guid: c15f6c1447faadc4db9889cc1e82d406,
         type: 3}
@@ -16924,18 +16924,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
         type: 3}
+      propertyPath: steps.Array.data[0].messageToShow
+      value: Walk Forwards
+      objectReference: {fileID: 0}
+    - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
+        type: 3}
+      propertyPath: steps.Array.data[1].messageToShow
+      value: Walk Backwards
+      objectReference: {fileID: 0}
+    - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
+        type: 3}
       propertyPath: steps.Array.data[2].messageToShow
       value: Jump
       objectReference: {fileID: 0}
     - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
         type: 3}
       propertyPath: steps.Array.data[3].messageToShow
-      value: Turn to the sides
+      value: Look Around
       objectReference: {fileID: 0}
     - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
         type: 3}
       propertyPath: steps.Array.data[4].messageToShow
-      value: 'Mission: Collect all the cheeses.'
+      value: Your mission - Collect all the cheeses
       objectReference: {fileID: 0}
     - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
         type: 3}
