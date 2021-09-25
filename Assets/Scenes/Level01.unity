@@ -9464,7 +9464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39ab0fcea1f26794780b0ca864eaab0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waitTimeSeconds: 0.66
+  waitTimeSeconds: 4
   UIMessageToShowRef: {fileID: 3851669679955812948}
   CanvasObjectAnimations: {fileID: 1537022258}
 --- !u!1001 &1507853431

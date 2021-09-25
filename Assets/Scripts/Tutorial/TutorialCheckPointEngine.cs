@@ -66,15 +66,15 @@ namespace alexshko.colamazle.tutorial
                 messageAnim.SetBool("isShowMessage", true);
                 yield return new WaitForSeconds(waitTimeSeconds / 2);
 
+                messageAnim.SetBool("isShowMessage", false);
+                yield return new WaitForSeconds(waitTimeSeconds / 2);
+
                 //if the animation is still playing, wait for it to finish.
                 while (tutorialAnim.GetCurrentAnimatorStateInfo(0).IsName(step.canvasAnimationTrigger))
                 {
                     Debug.Log("still playing the transition");
                     yield return new WaitForSeconds(0.1f);
                 }
-
-                messageAnim.SetBool("isShowMessage", false);
-                yield return new WaitForSeconds(waitTimeSeconds / 2);
 
                 //wait awhile between steps.
                 yield return new WaitForSeconds(0.2f);
