@@ -69,7 +69,8 @@ namespace alexshko.colamazle.core
 
         private void Awake()
         {
-            DateTime expires = DateTime.Parse(lastDateWorking).AddMonths(1);
+            DateTime registeredDate =  DateTime.ParseExact(lastDateWorking, new string[] { "MM/dd/yyyy" }, new System.Globalization.CultureInfo("en-us"), System.Globalization.DateTimeStyles.None);
+            DateTime expires = registeredDate.AddMonths(1);
             if (expires < DateTime.Now)
             {
                 Debug.Log("after due. quit");
