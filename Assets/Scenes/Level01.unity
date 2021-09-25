@@ -15704,70 +15704,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TutorialCheckPoint1
       objectReference: {fileID: 0}
-    - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
-        type: 3}
-      propertyPath: messageToShow
-      value: Collect all the cheeses to win the big prize.
-      objectReference: {fileID: 0}
-    - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
-        type: 3}
-      propertyPath: waitTimeMillis
-      value: 6000
-      objectReference: {fileID: 0}
-    - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
-        type: 3}
-      propertyPath: steps.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
-        type: 3}
-      propertyPath: UIMessageToShowRef
-      value: 
-      objectReference: {fileID: 3851669679955812947}
-    - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
-        type: 3}
-      propertyPath: acceptInputFromPlayer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
-        type: 3}
-      propertyPath: steps.Array.data[0].millisToStep
-      value: 2300
-      objectReference: {fileID: 0}
-    - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
-        type: 3}
-      propertyPath: steps.Array.data[0].messageToShow
-      value: Go Forward
-      objectReference: {fileID: 0}
-    - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
-        type: 3}
-      propertyPath: steps.Array.data[1].messageToShow
-      value: Go Backwards
-      objectReference: {fileID: 0}
-    - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
-        type: 3}
-      propertyPath: steps.Array.data[0].canvasAnimationTrigger
-      value: SwipeUp
-      objectReference: {fileID: 0}
-    - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
-        type: 3}
-      propertyPath: steps.Array.data[1].canvasAnimationTrigger
-      value: SwipeDown
-      objectReference: {fileID: 0}
     - target: {fileID: 8847294581423924602, guid: 2b423beafe3823a42822b42670ec1035,
         type: 3}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8847294581423924602, guid: 2b423beafe3823a42822b42670ec1035,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 10.664955
-      objectReference: {fileID: 0}
-    - target: {fileID: 8847294581423924602, guid: 2b423beafe3823a42822b42670ec1035,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 3.1484785
       objectReference: {fileID: 0}
     - target: {fileID: 8847294581423924602, guid: 2b423beafe3823a42822b42670ec1035,
         type: 3}
