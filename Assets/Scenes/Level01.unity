@@ -15145,12 +15145,12 @@ PrefabInstance:
     - target: {fileID: 719491760195130403, guid: c15f6c1447faadc4db9889cc1e82d406,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -9.312314e-10
+      value: 5.5489406e-17
       objectReference: {fileID: 0}
     - target: {fileID: 719491760195130403, guid: c15f6c1447faadc4db9889cc1e82d406,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -1.3034695e-11
+      value: 1.3729897e-18
       objectReference: {fileID: 0}
     - target: {fileID: 719491760195130403, guid: c15f6c1447faadc4db9889cc1e82d406,
         type: 3}
@@ -15160,7 +15160,7 @@ PrefabInstance:
     - target: {fileID: 719491760195130403, guid: c15f6c1447faadc4db9889cc1e82d406,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.013995896
+      value: -0.013995897
       objectReference: {fileID: 0}
     - target: {fileID: 719491760195130403, guid: c15f6c1447faadc4db9889cc1e82d406,
         type: 3}
@@ -16399,6 +16399,11 @@ PrefabInstance:
         type: 3}
       propertyPath: horizontalCamMinSpeed
       value: 3500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
+        type: 3}
+      propertyPath: minAngleJoystickNotUp
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}

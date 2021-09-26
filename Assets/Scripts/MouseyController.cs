@@ -22,6 +22,7 @@ namespace alexshko.colamazle.Entities
         public float timeForCamTurn = 0.1f;
         public Transform CamRefObject;
         public float MinDistanceOFSwipe = 0.002f;
+        public float minAngleJoystickNotUp = 0.1f;
 
         [SerializeField]
         private float speed => MoveToMakeNoGravityLocal.magnitude;
@@ -93,6 +94,7 @@ namespace alexshko.colamazle.Entities
             TurnCamRefObject();
         }
 
+        #region functions executed in Update:
         private void CalcMovementToMake()
         {
             //to make comparison to previous movement vector. will be used, for instance, to check if he reached the maximum height during jump
@@ -110,12 +112,10 @@ namespace alexshko.colamazle.Entities
             }
 
             //calculate the movement and rotation of mousey by the joystick:
-            joystickRotation = -Quaternion.FromToRotation(Vector2.up, InputVal).eulerAngles.z;
-            mouseDesiredRotation = Quaternion.Euler(0, joystickRotation, 0) * CamRefObject.rotation;
-            mouseDesiredSpeed = InputVal.magnitude;
+            CalcJoystickRotationMagnitude(out mouseDesiredRotation, out mouseDesiredSpeed);
 
             //if there is joystick moemvent, then needs to go forward.
-            //if it starts from standing (no speed), then it shoud wait for the turn to finsh first.
+            //if it starts from standing (no speed), then it shoud wait for the turn of the mouse to finsh first.
             if (InputVal.magnitude > 0.05f)
             {
 
@@ -214,7 +214,19 @@ namespace alexshko.colamazle.Entities
             }
             return (curTouch.fingerId != GameController.Instance.JoystickTouchId);
         }
+        
+        private void CalcJoystickRotationMagnitude(out Quaternion rot, out float magntiude)
+        {
+            //calculate the movement and rotation of mousey by the joystick:
+            float jRot = -Quaternion.FromToRotation(Vector2.up, InputVal).eulerAngles.z;
+            jRot = Mathf.Abs(jRot) < minAngleJoystickNotUp ? 0 : jRot;
+            rot = Quaternion.Euler(0, jRot, 0) * CamRefObject.rotation;
+            magntiude = InputVal.magnitude;
+        }
+        
+        #endregion
 
+        #region functions executed in FixedUpdate. they make changes to the objects so they will move.
         private void TurnCharacter()
         {
             if (InputVal.magnitude > 0.05f && Quaternion.Angle(mouseRef.rotation, mouseDesiredRotation) > EpsilonAngleCheck)
@@ -269,6 +281,7 @@ namespace alexshko.colamazle.Entities
             anim.SetTrigger("FinishJump");
         }
 
+        #endregion
         public void MakeJumpButton()
         {
             isAboutToJump = true;
