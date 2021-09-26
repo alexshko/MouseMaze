@@ -218,8 +218,10 @@ namespace alexshko.colamazle.Entities
         private void CalcJoystickRotationMagnitude(out Quaternion rot, out float magntiude)
         {
             //calculate the movement and rotation of mousey by the joystick:
-            float jRot = -Quaternion.FromToRotation(Vector2.up, InputVal).eulerAngles.z;
+            float jRot = -Vector2.SignedAngle(Vector2.up, InputVal);
+            Debug.LogFormat("jRot before the miDistance: {0}", jRot);
             jRot = Mathf.Abs(jRot) < minAngleJoystickNotUp ? 0 : jRot;
+
             rot = Quaternion.Euler(0, jRot, 0) * CamRefObject.rotation;
             magntiude = InputVal.magnitude;
         }
