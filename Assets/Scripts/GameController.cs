@@ -19,9 +19,12 @@ namespace alexshko.colamazle.core
         //reference for the score text:
         public TMPro.TMP_Text ScoreRef;
 
-        public float JoystickValue
+        private Vector2 JoystickVal;
+
+        [SerializeField]
+        public Vector2 JoystickValue
         {
-            get => JoystickPref.Vertical;
+            get => JoystickPref.Direction;
         }
         public int JoystickTouchId
         {
@@ -126,6 +129,11 @@ namespace alexshko.colamazle.core
                 cheeseList.Clear();
                 cheeseList = null;
             }
+        }
+
+        private void Update()
+        {
+            JoystickVal = JoystickValue;
         }
     }
 }

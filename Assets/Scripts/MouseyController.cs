@@ -38,11 +38,16 @@ namespace alexshko.colamazle.Entities
         private bool isJumping = false;
         private bool isAboutToJump = false; //for requesting to jump by button.
 
-        private float InputVal = 0;
+        private Vector2 InputVal = Vector2.zero;
         private bool isCameraMove;
         private Vector2 fingerMoveForCamera;
         private float CameraMoveAngleY = 0;
         private float CameraMoveAngleYTotal = 0;
+
+        private float joystickRotation;
+        private Quaternion mouseDesiredRotation;
+        private float mouseDesiredSpeed;
+
         private int fingerIdCameraControl = -1;
         [SerializeField]
         private float adjustedVerticalAim
@@ -97,20 +102,27 @@ namespace alexshko.colamazle.Entities
             if (GameController.Instance.acceptInputPlayer)
             {
                 //take the Vertical input axis. and also the vertical valuue of the joystick:
-                InputVal = Input.GetAxis("Vertical") + GameController.Instance.JoystickValue;
+                InputVal = GameController.Instance.JoystickValue;
             }
             else
             {
-                InputVal = 0;
+                InputVal = Vector2.zero;
             }
+
+            //calculate the movement and rotation of mousey by the joystick:
+            joystickRotation = -Quaternion.FromToRotation(Vector2.up, InputVal).eulerAngles.z;
+            mouseDesiredRotation = Quaternion.Euler(0, joystickRotation, 0) * CamRefObject.rotation;
+            mouseDesiredSpeed = InputVal.magnitude;
+
             //if there is joystick moemvent, then needs to go forward.
             //if it starts from standing (no speed), then it shoud wait for the turn to finsh first.
-            if (Mathf.Abs(InputVal) > 0.05f)
+            if (InputVal.magnitude > 0.05f)
             {
-                if ((speed == 0 && Quaternion.Angle(mouseRef.rotation, CamRefObject.rotation) < EpsilonAngleCheck) || speed!=0)
+
+                if ((speed == 0 && Quaternion.Angle(mouseRef.rotation, mouseDesiredRotation) < EpsilonAngleCheck) || speed!=0)
                 {
                     Debug.Log("Move to make1: " + mouseRef.forward);
-                    MoveToMake += (InputVal > 0 ? MaxForwardSpeed : MaxBackwardSpeed) * Mathf.Clamp(InputVal, -1, 1) * mouseRef.forward;
+                    MoveToMake = MaxForwardSpeed * Mathf.Clamp(mouseDesiredSpeed, 0, 1) * mouseRef.forward;
                 }
             }
 
@@ -205,11 +217,11 @@ namespace alexshko.colamazle.Entities
 
         private void TurnCharacter()
         {
-            if (Mathf.Abs(InputVal) > 0.05f && Quaternion.Angle(mouseRef.rotation, CamRefObject.rotation) > EpsilonAngleCheck)
+            if (InputVal.magnitude > 0.05f && Quaternion.Angle(mouseRef.rotation, mouseDesiredRotation) > EpsilonAngleCheck)
             {
                 float yVelocity = 0;
                 float curAngle = mouseRef.rotation.eulerAngles.y;
-                float newAngle = Mathf.SmoothDampAngle(curAngle, CamRefObject.rotation.eulerAngles.y, ref yVelocity, timeForPlayerTurn,Mathf.Infinity,Time.fixedDeltaTime);
+                float newAngle = Mathf.SmoothDampAngle(curAngle, mouseDesiredRotation.eulerAngles.y, ref yVelocity, timeForPlayerTurn,Mathf.Infinity,Time.fixedDeltaTime);
                 mouseRef.rotation = Quaternion.Euler(new Vector3(0, newAngle, 0));
             }
         }
