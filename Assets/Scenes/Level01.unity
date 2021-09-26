@@ -2595,7 +2595,7 @@ RectTransform:
   - {fileID: 1465791516}
   - {fileID: 1756874105}
   m_Father: {fileID: 1537022262}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4628,6 +4628,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dynamic Joystick
       objectReference: {fileID: 0}
+    - target: {fileID: 8135886327784587633, guid: 56fae09712773584fb63896d473a98ee,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8135886327784587633, guid: 56fae09712773584fb63896d473a98ee,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56fae09712773584fb63896d473a98ee, type: 3}
 --- !u!224 &740045296 stripped
@@ -4841,7 +4851,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1537022262}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6485,7 +6495,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1024920866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6625,7 +6635,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1537022262}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 180, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6970,13 +6980,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1052509456}
-  m_LocalRotation: {x: -1.3729897e-18, y: 0.99990207, z: -0.013995897, w: -5.5489406e-17}
+  m_LocalRotation: {x: 1.3729897e-18, y: 0.99990207, z: -0.013995897, w: 5.5489406e-17}
   m_LocalPosition: {x: -1980.973, y: -929.8509, z: 102.97946}
   m_LocalScale: {x: 1.2972974, y: 1.2972975, z: 1.2972974}
   m_Children:
   - {fileID: 424777565}
   m_Father: {fileID: 1537022262}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 1.604, y: 180.04, z: 0}
 --- !u!114 &1052509458
 MonoBehaviour:
@@ -10199,7 +10209,6 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 4537569201200669901}
   - {fileID: 385978219}
   - {fileID: 3851669679955812947}
   - {fileID: 1032075041}
@@ -15910,166 +15919,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 372dc3d6d86ff57498931504f56c58fc, type: 3}
---- !u!1001 &4537569201200669900
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1537022262}
-    m_Modifications:
-    - target: {fileID: 7205345403521413824, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205345403521413824, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205345403521413824, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205345403521413827, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205345404285661609, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205345404285661622, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205345404426900113, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
-        type: 3}
-      propertyPath: m_Name
-      value: Dynamic Joystick
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205345404426900113, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205345404426900126, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
-        type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205345404426900126, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
-        type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205345404426900126, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205345404426900126, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205345404426900126, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205345404426900126, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205345404426900126, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205345404426900126, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 850
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205345404426900126, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205345404426900126, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205345404426900126, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205345404426900126, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205345404426900126, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205345404426900126, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205345404426900126, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205345404426900126, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205345404426900126, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 421
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205345404426900126, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 640.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205345404426900126, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205345404426900126, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7205345404426900126, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e1ac3b9b334fa8a46851f4638f2a04fd, type: 3}
---- !u!224 &4537569201200669901 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7205345404426900126, guid: e1ac3b9b334fa8a46851f4638f2a04fd,
-    type: 3}
-  m_PrefabInstance: {fileID: 4537569201200669900}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5089532370880159901
 GameObject:
   m_ObjectHideFlags: 0
@@ -17091,27 +16940,27 @@ PrefabInstance:
     - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
         type: 3}
       propertyPath: steps.Array.size
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
         type: 3}
       propertyPath: steps.Array.data[0].messageToShow
-      value: Walk Forwards
+      value: Use left joystick to walk
       objectReference: {fileID: 0}
     - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
         type: 3}
       propertyPath: steps.Array.data[1].messageToShow
-      value: Walk Backwards
-      objectReference: {fileID: 0}
-    - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
-        type: 3}
-      propertyPath: steps.Array.data[2].messageToShow
       value: Jump
       objectReference: {fileID: 0}
     - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
         type: 3}
-      propertyPath: steps.Array.data[3].messageToShow
+      propertyPath: steps.Array.data[2].messageToShow
       value: Look Around
+      objectReference: {fileID: 0}
+    - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
+        type: 3}
+      propertyPath: steps.Array.data[3].messageToShow
+      value: Your mission - Collect all the cheeses
       objectReference: {fileID: 0}
     - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
         type: 3}
@@ -17120,13 +16969,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
         type: 3}
-      propertyPath: steps.Array.data[2].canvasAnimationTrigger
+      propertyPath: steps.Array.data[1].canvasAnimationTrigger
       value: TutJump
       objectReference: {fileID: 0}
     - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
         type: 3}
-      propertyPath: steps.Array.data[3].canvasAnimationTrigger
+      propertyPath: steps.Array.data[2].canvasAnimationTrigger
       value: SwipeSides
+      objectReference: {fileID: 0}
+    - target: {fileID: 8847294581423924600, guid: 2b423beafe3823a42822b42670ec1035,
+        type: 3}
+      propertyPath: steps.Array.data[3].canvasAnimationTrigger
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8847294581423924602, guid: 2b423beafe3823a42822b42670ec1035,
         type: 3}
