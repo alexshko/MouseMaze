@@ -6060,7 +6060,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1024920866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14318,6 +14318,51 @@ PrefabInstance:
       propertyPath: m_Name
       value: VPlayerCam
       objectReference: {fileID: 0}
+    - target: {fileID: 719491760195130402, guid: c15f6c1447faadc4db9889cc1e82d406,
+        type: 3}
+      propertyPath: m_Damping
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 719491760195130402, guid: c15f6c1447faadc4db9889cc1e82d406,
+        type: 3}
+      propertyPath: m_Strategy
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 719491760195130402, guid: c15f6c1447faadc4db9889cc1e82d406,
+        type: 3}
+      propertyPath: m_CameraRadius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 719491760195130402, guid: c15f6c1447faadc4db9889cc1e82d406,
+        type: 3}
+      propertyPath: m_MaximumEffort
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 719491760195130402, guid: c15f6c1447faadc4db9889cc1e82d406,
+        type: 3}
+      propertyPath: m_SmoothingTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 719491760195130402, guid: c15f6c1447faadc4db9889cc1e82d406,
+        type: 3}
+      propertyPath: m_AvoidObstacles
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 719491760195130402, guid: c15f6c1447faadc4db9889cc1e82d406,
+        type: 3}
+      propertyPath: m_DampingWhenOccluded
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 719491760195130402, guid: c15f6c1447faadc4db9889cc1e82d406,
+        type: 3}
+      propertyPath: m_OptimalTargetDistance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 719491760195130402, guid: c15f6c1447faadc4db9889cc1e82d406,
+        type: 3}
+      propertyPath: m_MinimumDistanceFromTarget
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 719491760195130403, guid: c15f6c1447faadc4db9889cc1e82d406,
         type: 3}
       propertyPath: m_RootOrder
@@ -14590,17 +14635,17 @@ PrefabInstance:
     - target: {fileID: 963518244200096019, guid: cd8ab3e0567712d48b7c7bf7902e2951,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 5.5489406e-17
+      value: -9.312314e-10
       objectReference: {fileID: 0}
     - target: {fileID: 963518244200096019, guid: cd8ab3e0567712d48b7c7bf7902e2951,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 1.3729897e-18
+      value: -1.3034695e-11
       objectReference: {fileID: 0}
     - target: {fileID: 963518244200096019, guid: cd8ab3e0567712d48b7c7bf7902e2951,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.013995897
+      value: -0.013995896
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd8ab3e0567712d48b7c7bf7902e2951, type: 3}
