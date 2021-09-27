@@ -87,17 +87,17 @@ MonoBehaviour:
   m_TransparentLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_MinimumDistanceFromTarget: 0.1
+  m_MinimumDistanceFromTarget: 0.5
   m_AvoidObstacles: 1
   m_DistanceLimit: 0
   m_MinimumOcclusionTime: 0
   m_CameraRadius: 0.5
   m_Strategy: 1
   m_MaximumEffort: 4
-  m_SmoothingTime: 0.2
-  m_Damping: 0.4
-  m_DampingWhenOccluded: 0.4
-  m_OptimalTargetDistance: 0
+  m_SmoothingTime: 1
+  m_Damping: 0.2
+  m_DampingWhenOccluded: 0.2
+  m_OptimalTargetDistance: 0.5
 --- !u!1 &719491760949442842
 GameObject:
   m_ObjectHideFlags: 0
