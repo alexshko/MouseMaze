@@ -287,6 +287,7 @@ namespace alexshko.colamazle.Entities
         #endregion
         public void MakeJumpButton()
         {
+            if (!isAboutToJump && !isJumping)
             isAboutToJump = true;
         }
 
