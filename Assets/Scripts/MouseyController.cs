@@ -221,6 +221,7 @@ namespace alexshko.colamazle.Entities
             float jRot = -Vector2.SignedAngle(Vector2.up, InputVal);
             Debug.LogFormat("jRot before the miDistance: {0}", jRot);
             jRot = Mathf.Abs(jRot) < minAngleJoystickNotUp ? 0 : jRot;
+            jRot = Mathf.Abs(jRot) > 180 - minAngleJoystickNotUp ? 180 : jRot;
 
             rot = Quaternion.Euler(0, jRot, 0) * CamRefObject.rotation;
             magntiude = InputVal.magnitude;

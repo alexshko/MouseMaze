@@ -35,6 +35,7 @@ namespace alexshko.colamazle.tutorial
             curMessage = null;
             messageAnim = UIMessageToShowRef.GetComponent<Animator>();
             tutorialAnim = CanvasObjectAnimations.GetComponent<Animator>();
+            //tutorialAnim.enabled = true;
         }
 
         public void ActivateCheckPoint(TutorialStep[] steps, bool acceptInput)
