@@ -14318,51 +14318,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: VPlayerCam
       objectReference: {fileID: 0}
-    - target: {fileID: 719491760195130402, guid: c15f6c1447faadc4db9889cc1e82d406,
-        type: 3}
-      propertyPath: m_Damping
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 719491760195130402, guid: c15f6c1447faadc4db9889cc1e82d406,
-        type: 3}
-      propertyPath: m_Strategy
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 719491760195130402, guid: c15f6c1447faadc4db9889cc1e82d406,
-        type: 3}
-      propertyPath: m_CameraRadius
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 719491760195130402, guid: c15f6c1447faadc4db9889cc1e82d406,
-        type: 3}
-      propertyPath: m_MaximumEffort
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 719491760195130402, guid: c15f6c1447faadc4db9889cc1e82d406,
-        type: 3}
-      propertyPath: m_SmoothingTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 719491760195130402, guid: c15f6c1447faadc4db9889cc1e82d406,
-        type: 3}
-      propertyPath: m_AvoidObstacles
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 719491760195130402, guid: c15f6c1447faadc4db9889cc1e82d406,
-        type: 3}
-      propertyPath: m_DampingWhenOccluded
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 719491760195130402, guid: c15f6c1447faadc4db9889cc1e82d406,
-        type: 3}
-      propertyPath: m_OptimalTargetDistance
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 719491760195130402, guid: c15f6c1447faadc4db9889cc1e82d406,
-        type: 3}
-      propertyPath: m_MinimumDistanceFromTarget
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 719491760195130403, guid: c15f6c1447faadc4db9889cc1e82d406,
         type: 3}
       propertyPath: m_RootOrder
