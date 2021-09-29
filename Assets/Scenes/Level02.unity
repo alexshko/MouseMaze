@@ -723,8 +723,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2729632149576666}
-  m_LocalRotation: {x: 0, y: 0.99999017, z: -0.004444335, w: 0}
-  m_LocalPosition: {x: -47, y: 2.4, z: 78.88}
+  m_LocalRotation: {x: 0, y: 0.99999017, z: -0.0044443086, w: 0}
+  m_LocalPosition: {x: 30.6, y: 12.4, z: 159.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -760,17 +760,17 @@ PrefabInstance:
     - target: {fileID: 719491760195130403, guid: c15f6c1447faadc4db9889cc1e82d406,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -47
+      value: 30.6
       objectReference: {fileID: 0}
     - target: {fileID: 719491760195130403, guid: c15f6c1447faadc4db9889cc1e82d406,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.4
+      value: 12.4
       objectReference: {fileID: 0}
     - target: {fileID: 719491760195130403, guid: c15f6c1447faadc4db9889cc1e82d406,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 78.88
+      value: 159.46
       objectReference: {fileID: 0}
     - target: {fileID: 719491760195130403, guid: c15f6c1447faadc4db9889cc1e82d406,
         type: 3}
@@ -790,7 +790,7 @@ PrefabInstance:
     - target: {fileID: 719491760195130403, guid: c15f6c1447faadc4db9889cc1e82d406,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.004444335
+      value: -0.0044443086
       objectReference: {fileID: 0}
     - target: {fileID: 719491760195130403, guid: c15f6c1447faadc4db9889cc1e82d406,
         type: 3}
@@ -926,6 +926,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasWithTutorial
       objectReference: {fileID: 0}
+    - target: {fileID: 835358794800389234, guid: 515842b57a556a94a9bbfc81763040b9,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6459144578720563649}
+    - target: {fileID: 835358794800389234, guid: 515842b57a556a94a9bbfc81763040b9,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MakeJumpButton
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 515842b57a556a94a9bbfc81763040b9, type: 3}
 --- !u!114 &1587920692144057321 stripped
@@ -1010,17 +1020,17 @@ PrefabInstance:
     - target: {fileID: 6459144579177980619, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -47
+      value: 30.6
       objectReference: {fileID: 0}
     - target: {fileID: 6459144579177980619, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6459144579177980619, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 74.38
+      value: 154.96
       objectReference: {fileID: 0}
     - target: {fileID: 6459144579177980619, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
@@ -1059,6 +1069,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e79baa318741cf4bafd715f01286b97, type: 3}
+--- !u!114 &6459144578720563649 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
+    type: 3}
+  m_PrefabInstance: {fileID: 6459144578720563648}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b72212d2265ace442bfaefce2db245cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7549813442434237753
 PrefabInstance:
   m_ObjectHideFlags: 0
