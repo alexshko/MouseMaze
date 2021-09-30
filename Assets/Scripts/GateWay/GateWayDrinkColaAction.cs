@@ -39,6 +39,9 @@ namespace alexshko.colamazle.Entities
             MouseyRef.GetComponent<MouseyController>().MouseHandRef = MouseHandRef;
             MouseyRef.GetComponent<MouseyController>().GrabCola();
             await Task.Delay(300);
+
+            //make adjustment:
+            await LoadNextScene();
         }
 
         private async Task ShowCameraOnEffect()
@@ -49,8 +52,6 @@ namespace alexshko.colamazle.Entities
             await Task.Delay(waitTime);
             cameraRef.Priority = curPriority;
             await Task.Delay(1000);
-            //make adjustment:
-            await LoadNextScene();
         }
 
         private async Task LoadNextScene()

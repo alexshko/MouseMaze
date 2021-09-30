@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!64 &932181869325482515
+--- !u!64 &341537560
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11,7 +11,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 1450849034746856584, guid: ec6e3ddf27f266d4995ab73b9d9c0a8d, type: 3}
 --- !u!1001 &4435367428438503373
@@ -29,32 +29,32 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: ec6e3ddf27f266d4995ab73b9d9c0a8d,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ec6e3ddf27f266d4995ab73b9d9c0a8d,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ec6e3ddf27f266d4995ab73b9d9c0a8d,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 3
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ec6e3ddf27f266d4995ab73b9d9c0a8d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 21.743402
+      value: 31.16
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ec6e3ddf27f266d4995ab73b9d9c0a8d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.8851914
+      value: 4.036
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ec6e3ddf27f266d4995ab73b9d9c0a8d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 150.12
+      value: 149.86
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ec6e3ddf27f266d4995ab73b9d9c0a8d,
         type: 3}
@@ -64,12 +64,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: ec6e3ddf27f266d4995ab73b9d9c0a8d,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ec6e3ddf27f266d4995ab73b9d9c0a8d,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ec6e3ddf27f266d4995ab73b9d9c0a8d,
         type: 3}
@@ -94,7 +94,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ec6e3ddf27f266d4995ab73b9d9c0a8d,
         type: 3}
       propertyPath: m_Name
-      value: Rock Variant
+      value: Rock
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ec6e3ddf27f266d4995ab73b9d9c0a8d,
         type: 3}
