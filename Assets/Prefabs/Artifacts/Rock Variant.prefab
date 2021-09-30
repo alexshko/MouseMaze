@@ -14,6 +14,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 1450849034746856584, guid: ec6e3ddf27f266d4995ab73b9d9c0a8d, type: 3}
+--- !u!114 &2993493063106749451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3552494567870108316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f4482b25d25d7d488dfcdb678b0a59b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4435367428438503373
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -94,7 +106,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: ec6e3ddf27f266d4995ab73b9d9c0a8d,
         type: 3}
       propertyPath: m_Name
-      value: Rock
+      value: Rock Variant
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ec6e3ddf27f266d4995ab73b9d9c0a8d,
         type: 3}
