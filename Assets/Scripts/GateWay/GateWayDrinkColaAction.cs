@@ -49,6 +49,7 @@ namespace alexshko.colamazle.Entities
             await Task.Delay(waitTime);
             cameraRef.Priority = curPriority;
             await Task.Delay(1000);
+            //make adjustment:
             AsyncOperation ao = SceneManager.LoadSceneAsync(0);
             ao.allowSceneActivation = true;
             while (!ao.isDone)
