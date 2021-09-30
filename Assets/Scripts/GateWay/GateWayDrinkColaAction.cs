@@ -50,7 +50,18 @@ namespace alexshko.colamazle.Entities
             cameraRef.Priority = curPriority;
             await Task.Delay(1000);
             //make adjustment:
-            AsyncOperation ao = SceneManager.LoadSceneAsync(0);
+            await LoadNextScene();
+        }
+
+        private async Task LoadNextScene()
+        {
+            int curSceneIndx = SceneManager.GetActiveScene().buildIndex;
+            int nextSceneIndx = curSceneIndx + 1;
+            if (curSceneIndx >= SceneManager.sceneCountInBuildSettings - 1)
+            {
+                nextSceneIndx = 0;
+            }
+            AsyncOperation ao = SceneManager.LoadSceneAsync(nextSceneIndx);
             ao.allowSceneActivation = true;
             while (!ao.isDone)
             {
