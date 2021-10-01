@@ -1,27 +1,30 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public abstract class FloatingRock : MonoBehaviour
+namespace alexshko.colamazle.Entities.Rocks
 {
-    public float speedOfMove;
-    public bool isMooving { get; set; }
-
-    private Rigidbody rb;
-
-
-    protected abstract void ApplyForce();
-
-    public void Start()
+    public abstract class FloatingRock : MonoBehaviour
     {
-        rb = GetComponent<Rigidbody>();
-    }
-    public void Update()
-    {
-        if (isMooving)
+        public float speedOfMove;
+        public bool isMooving;
+
+        protected Rigidbody rb;
+
+
+        protected abstract void ApplyForce();
+
+        public virtual void Start()
         {
-            ApplyForce();
+            rb = GetComponent<Rigidbody>();
         }
-    }
 
+        //public void tes();
+        public void FixedUpdate()
+        {
+            if (isMooving)
+            {
+                ApplyForce();
+            }
+        }
+
+    }
 }
