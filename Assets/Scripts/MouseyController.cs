@@ -141,6 +141,7 @@ namespace alexshko.colamazle.Entities
 
             //calculate the speed affected by gravity and sum it to gravitySpeed.
             //if he;s on the ground then it shoukd be zero for the CharacterController to work
+
             if (character.isGrounded && !isJumping)
             {
                 gravitySpeed = Vector3.zero;

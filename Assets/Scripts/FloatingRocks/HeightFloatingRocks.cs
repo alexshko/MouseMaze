@@ -8,11 +8,11 @@ namespace alexshko.colamazle.Entities.Rocks
         public Transform UpperLimit;
         public Transform LowerLimit;
 
-        private bool isGoingUp = true;
+        private bool isGoingUp;
         private Vector3 initPos;
         protected override void ApplyForce()
         {
-            float t = InverseLerp(LowerLimit.position, UpperLimit.position, transform.position);
+            float t = InverseLerp(LowerLimit.position, UpperLimit.position, rb.position);
             if (t >= 1)
             {
                 isGoingUp = false;
@@ -24,11 +24,13 @@ namespace alexshko.colamazle.Entities.Rocks
             float nextT = isGoingUp ? t + speedOfMove * Time.deltaTime : t- speedOfMove * Time.deltaTime;
 
             rb.MovePosition(Vector3.Lerp(LowerLimit.position,UpperLimit.position, nextT));
+            //rb.AddForce(new Vector3(0, 1, 0), ForceMode.Force);
         }
 
         public override void Start()
         {
             base.Start();
+            isGoingUp = true;
             initPos = transform.position;
         }
 

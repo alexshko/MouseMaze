@@ -14,7 +14,7 @@ namespace alexshko.colamazle.Entities.Rocks
 
         public virtual void Start()
         {
-            rb = GetComponent<Rigidbody>();
+            rb = GetComponentInChildren<Rigidbody>();
         }
 
         //public void tes();

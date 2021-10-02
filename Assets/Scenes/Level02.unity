@@ -810,6 +810,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1777728954}
     m_Modifications:
+    - target: {fileID: 3850517737610516839, guid: 39075536616015f45a22c45b3f037c27,
+        type: 3}
+      propertyPath: isMooving
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6222560963895057704, guid: 39075536616015f45a22c45b3f037c27,
         type: 3}
       propertyPath: m_RootOrder
@@ -1246,26 +1251,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2050604315}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2050604317 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3552494567870108316, guid: e90bc5f3ccade3e468c560a0617d44f6,
-    type: 3}
-  m_PrefabInstance: {fileID: 2050604315}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &2050604318
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2050604317}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 1450849034746856584, guid: ec6e3ddf27f266d4995ab73b9d9c0a8d, type: 3}
 --- !u!20 &2729632149576664
 Camera:
   m_ObjectHideFlags: 0
