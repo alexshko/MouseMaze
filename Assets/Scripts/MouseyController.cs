@@ -127,12 +127,12 @@ namespace alexshko.colamazle.Entities
             }
 
             //if he's landed on ground, then cancel jumping.
-            if (character.isGrounded && !prevGrounded)
+            if (isCharOnGround() && !prevGrounded)
             {
                 isJumping = false;
             }
             //if he's on ground and presseed Jump button then it should be taken care in MoveToMake and activate the jump anim.
-            if (character.isGrounded && isAboutToJump)
+            if (isCharOnGround() && isAboutToJump)
             {
                 isJumping = true;
                 StartJumpAnim();
@@ -142,13 +142,23 @@ namespace alexshko.colamazle.Entities
             //calculate the speed affected by gravity and sum it to gravitySpeed.
             //if he;s on the ground then it shoukd be zero for the CharacterController to work
 
-            if (character.isGrounded && !isJumping)
+            if ((isCharOnGround() || prevGrounded) && !isJumping)
             {
+                if (!isCharOnGround() && prevGrounded)
+                {
+                    Debug.Log("prev grounded");
+                }
                 gravitySpeed = Vector3.zero;
+                Vector3 speedOfFloor = GetSpeedOfGround();
+                MoveToMake += speedOfFloor;
             }
-            gravitySpeed = gravitySpeed + Physics.gravity * Time.deltaTime;
-            //add to the frame's speed:
-            MoveToMake += gravitySpeed;
+            //gravitySpeed = gravitySpeed + Physics.gravity * Time.deltaTime;
+            else
+            {
+                gravitySpeed = gravitySpeed + Physics.gravity * Time.deltaTime;
+                //add to the frame's speed:
+                MoveToMake += gravitySpeed;
+            }
 
             //if he's in the height of the jump, and now starts falling, then start the second animation.
             if (isJumping && (Mathf.Sign(MoveToMake.y) == -1 && Mathf.Sign(prevMovement.y) == 1))
@@ -156,9 +166,26 @@ namespace alexshko.colamazle.Entities
                 FinshJumpAnim();
             }
 
-            prevGrounded = character.isGrounded;
+            prevGrounded = isCharOnGround();
             //at the end of the update, reset the request to jump.
             isAboutToJump = false;
+        }
+
+        private bool isCharOnGround()
+        {
+            Debug.DrawLine(transform.position, transform.position + Vector3.down*0.15f, Color.green);
+            return Physics.Raycast(transform.position, Vector3.down, 0.15f);
+        }
+
+        private Vector3 GetSpeedOfGround()
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, Vector3.down,out hit, 0.15f))
+            {
+                return hit.collider.GetComponent<Rigidbody>().velocity;
+            }
+
+            return Vector3.zero - new Vector3(0,1,0);
         }
 
         private void CalcCamReferenceObject()
