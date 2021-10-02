@@ -27,6 +27,8 @@ namespace alexshko.colamazle.Entities
         [SerializeField]
         private float speed => MoveToMakeNoGravityLocal.magnitude;
 
+        private bool isCharGrounded;
+        private Vector3 speedOfGround;
         private Animator anim;
         private CharacterController character;
         private Transform mouseRef;
@@ -79,10 +81,15 @@ namespace alexshko.colamazle.Entities
 
             Debug.LogFormat("Screen size: {0}", Screen.width);
 
+            isCharGrounded = false;
+
         }
 
         private void Update()
         {
+            isCharGrounded = isCharOnGround();
+            speedOfGround = GetSpeedOfGround();
+
             CalcMovementToMake();
             CalcCamReferenceObject();
         }
@@ -127,12 +134,12 @@ namespace alexshko.colamazle.Entities
             }
 
             //if he's landed on ground, then cancel jumping.
-            if (isCharOnGround() && !prevGrounded)
+            if (isCharGrounded && !prevGrounded)
             {
                 isJumping = false;
             }
             //if he's on ground and presseed Jump button then it should be taken care in MoveToMake and activate the jump anim.
-            if (isCharOnGround() && isAboutToJump)
+            if (isCharGrounded && isAboutToJump)
             {
                 isJumping = true;
                 StartJumpAnim();
@@ -142,15 +149,14 @@ namespace alexshko.colamazle.Entities
             //calculate the speed affected by gravity and sum it to gravitySpeed.
             //if he;s on the ground then it shoukd be zero for the CharacterController to work
 
-            if ((isCharOnGround() || prevGrounded) && !isJumping)
+            if ((isCharGrounded || prevGrounded) && !isJumping)
             {
-                if (!isCharOnGround() && prevGrounded)
+                if (!isCharGrounded && prevGrounded)
                 {
                     Debug.Log("prev grounded");
                 }
                 gravitySpeed = Vector3.zero;
-                Vector3 speedOfFloor = GetSpeedOfGround();
-                MoveToMake += speedOfFloor;
+                MoveToMake += speedOfGround;
             }
             //gravitySpeed = gravitySpeed + Physics.gravity * Time.deltaTime;
             else
@@ -166,26 +172,26 @@ namespace alexshko.colamazle.Entities
                 FinshJumpAnim();
             }
 
-            prevGrounded = isCharOnGround();
+            prevGrounded = isCharGrounded;
             //at the end of the update, reset the request to jump.
             isAboutToJump = false;
         }
 
         private bool isCharOnGround()
         {
-            Debug.DrawLine(transform.position, transform.position + Vector3.down*0.15f, Color.green);
-            return Physics.Raycast(transform.position, Vector3.down, 0.15f);
+            Debug.DrawLine(transform.position, transform.position + Vector3.down*0.05f, Color.green);
+            return Physics.Raycast(transform.position, Vector3.down, 0.05f);
         }
 
         private Vector3 GetSpeedOfGround()
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, Vector3.down,out hit, 0.15f))
+            if (Physics.Raycast(transform.position, Vector3.down,out hit, 0.05f))
             {
                 return hit.collider.GetComponent<Rigidbody>().velocity;
             }
 
-            return Vector3.zero - new Vector3(0,1,0);
+            return Vector3.zero;
         }
 
         private void CalcCamReferenceObject()
