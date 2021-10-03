@@ -810,6 +810,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1777728954}
     m_Modifications:
+    - target: {fileID: 628935233634309316, guid: 39075536616015f45a22c45b3f037c27,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3850517737610516839, guid: 39075536616015f45a22c45b3f037c27,
         type: 3}
       propertyPath: isMooving
@@ -1719,6 +1724,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RockBAckup
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ec6e3ddf27f266d4995ab73b9d9c0a8d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ec6e3ddf27f266d4995ab73b9d9c0a8d,
         type: 3}

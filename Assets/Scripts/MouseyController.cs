@@ -180,17 +180,34 @@ namespace alexshko.colamazle.Entities
         private bool isCharOnGround()
         {
             Debug.DrawLine(transform.position, transform.position + Vector3.down*0.05f, Color.green);
-            return Physics.Raycast(transform.position, Vector3.down, 0.05f);
+            //return Physics.Raycast(transform.position, Vector3.down, 0.05f);
+            RaycastHit hit;
+            Vector3 p1 = transform.position;
+            Vector3 p2 = p1 + Vector3.up * character.height;
+
+            // Cast character controller shape 10 meters forward to see if it is about to hit anything.
+            Debug.DrawLine(p2, p1 + new Vector3(0,-0.5f,0));
+            if (Physics.CapsuleCast(p1, p2, character.radius, -transform.up, out hit, 0.1f))
+            {
+                Debug.Log("found something beneeth");
+                return true;
+            }
+            return false;
         }
 
         private Vector3 GetSpeedOfGround()
         {
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, Vector3.down,out hit, 0.05f))
+            Vector3 p1 = transform.position;
+            Vector3 p2 = p1 + Vector3.up * character.height;
+
+            // Cast character controller shape 10 meters forward to see if it is about to hit anything.
+            Debug.DrawLine(p2, p1 + new Vector3(0, -0.5f, 0));
+            if (Physics.CapsuleCast(p1, p2, character.radius, -transform.up, out hit, 0.1f))
             {
+                Debug.Log("found something beneeth");
                 return hit.collider.GetComponent<Rigidbody>().velocity;
             }
-
             return Vector3.zero;
         }
 
@@ -333,6 +350,20 @@ namespace alexshko.colamazle.Entities
                 ColaRef.localPosition = Vector3.zero;
                 ColaRef.localRotation = Quaternion.Euler(0, 0, 90);
             }
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            //ContactPoint[] contacts = new ContactPoint[collision.contactCount];            
+            //collision.GetContacts(contacts);
+
+            //foreach (var point in contacts)
+            //{
+            //    if (point.point.y > transform.position.y)
+            //    {
+
+            //    }
+            //}
         }
     }
 }
