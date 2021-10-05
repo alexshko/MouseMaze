@@ -10,20 +10,23 @@ namespace alexshko.colamazle.Entities.Rocks
 
         private bool isGoingUp;
         private Vector3 initPos;
+        private Vector3 curTarget;
         protected override void ApplyForce()
         {
             float t = InverseLerp(LowerLimit.position, UpperLimit.position, rb.position);
-            if (t >= 1)
+            float totDist = Vector3.Distance(LowerLimit.position, UpperLimit.position);
+            float portion = (curTarget == UpperLimit.position? t / totDist : (1 - t / totDist));
+            if (t >= 0.9)
             {
-                isGoingUp = false;
+                curTarget = LowerLimit.position;
             }
-            if (t <= 0)
+            if (t <= 0.1)
             {
-                isGoingUp = true;
+                curTarget = UpperLimit.position;
             }
-            float nextT = isGoingUp ? t + speedOfMove * Time.deltaTime : t- speedOfMove * Time.deltaTime;
+            //float nextT = isGoingUp ? t + speedOfMove * Time.deltaTime : t- speedOfMove * Time.deltaTime;
 
-            rb.MovePosition(Vector3.Lerp(LowerLimit.position,UpperLimit.position, nextT));
+            rb.MovePosition(Vector3.Lerp(rb.position, curTarget, speedOfMove * portion * Time.deltaTime));
             //rb.AddForce(new Vector3(0, 1, 0), ForceMode.Force);
         }
 
@@ -32,7 +35,8 @@ namespace alexshko.colamazle.Entities.Rocks
             base.Start();
             isGoingUp = true;
             initPos = transform.position;
-        }
+            curTarget = UpperLimit.position;
+    }
 
         //taken from https://answers.unity.com/questions/1271974/inverselerp-for-vector3.html
         private float InverseLerp(Vector3 a, Vector3 b, Vector3 value)
