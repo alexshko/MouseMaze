@@ -24,11 +24,16 @@ namespace alexshko.colamazle.Entities
         public float MinDistanceOFSwipe = 0.002f;
         public float minAngleJoystickNotUp = 0.1f;
 
+        public LayerMask GroundLayer;
+
         [SerializeField]
         private float speed => MoveToMakeNoGravityLocal.magnitude;
 
         private bool isCharGrounded;
         private Vector3 speedOfGround;
+        private float spehreCheckRadius = 0.08f;
+        private float overlapingObjectWithVelocityY;
+
         private Animator anim;
         private CharacterController character;
         private Transform mouseRef;
@@ -88,14 +93,14 @@ namespace alexshko.colamazle.Entities
         private void Update()
         {
             isCharGrounded = isCharOnGround();
-            speedOfGround = GetSpeedOfGround();
-
+            speedOfGround = GetSpeedOfGround(out overlapingObjectWithVelocityY);
             CalcMovementToMake();
             CalcCamReferenceObject();
         }
 
         private void FixedUpdate()
         {
+
             TurnCharacter();
             MoveCharacter();
             TurnCamRefObject();
@@ -179,34 +184,28 @@ namespace alexshko.colamazle.Entities
 
         private bool isCharOnGround()
         {
-            Debug.DrawLine(transform.position, transform.position + Vector3.down*0.05f, Color.green);
-            //return Physics.Raycast(transform.position, Vector3.down, 0.05f);
-            RaycastHit hit;
             Vector3 p1 = transform.position;
-            Vector3 p2 = p1 + Vector3.up * character.height;
 
-            // Cast character controller shape 10 meters forward to see if it is about to hit anything.
-            Debug.DrawLine(p2, p1 + new Vector3(0,-0.5f,0));
-            if (Physics.CapsuleCast(p1, p2, character.radius, -transform.up, out hit, 0.1f))
-            {
-                Debug.Log("found something beneeth");
-                return true;
-            }
-            return false;
+            return (Physics.CheckSphere(p1, spehreCheckRadius, GroundLayer));
         }
 
-        private Vector3 GetSpeedOfGround()
+        private Vector3 GetSpeedOfGround(out float overlapDiff)
         {
-            RaycastHit hit;
             Vector3 p1 = transform.position;
-            Vector3 p2 = p1 + Vector3.up * character.height;
+            Vector3 p2 = p1 + character.height * transform.up;
+            overlapDiff = 0;
 
-            // Cast character controller shape 10 meters forward to see if it is about to hit anything.
-            Debug.DrawLine(p2, p1 + new Vector3(0, -0.5f, 0));
-            if (Physics.CapsuleCast(p1, p2, character.radius, -transform.up, out hit, 0.1f))
+            if (isCharOnGround())
             {
                 Debug.Log("found something beneeth");
-                return hit.collider.GetComponent<Rigidbody>().velocity;
+
+                Collider[] hits = Physics.OverlapSphere(p1, spehreCheckRadius, GroundLayer);
+                Collider groundObject = hits[0];
+
+                RaycastHit hit;
+                Physics.SphereCast(p2, spehreCheckRadius, -transform.up, out hit, character.height + 5, GroundLayer);
+                overlapDiff = hit.point.y - p1.y;
+                return hits[0].GetComponent<Rigidbody>().velocity;
             }
             return Vector3.zero;
         }
@@ -295,7 +294,7 @@ namespace alexshko.colamazle.Entities
         {
             if (MoveToMake != Vector3.zero)
             {
-                character.Move(MoveToMake * Time.deltaTime);
+                character.Move((overlapingObjectWithVelocityY * transform.up + MoveToMake) * Time.deltaTime);
             }
             //calculate the speed of wich to make the run animation:
             Vector3 MoveToMakeNoGravityWorldSpace = new Vector3(MoveToMake.x, 0, MoveToMake.z);

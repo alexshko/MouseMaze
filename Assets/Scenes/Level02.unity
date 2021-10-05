@@ -812,8 +812,13 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 628935233634309316, guid: 39075536616015f45a22c45b3f037c27,
         type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 628935233634309316, guid: 39075536616015f45a22c45b3f037c27,
+        type: 3}
       propertyPath: m_CollisionDetection
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3850517737610516839, guid: 39075536616015f45a22c45b3f037c27,
         type: 3}
@@ -915,7 +920,7 @@ GameObject:
   - component: {fileID: 1718354890}
   - component: {fileID: 1718354889}
   - component: {fileID: 1718354888}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: River
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1121,7 +1126,7 @@ GameObject:
   - component: {fileID: 1955432820}
   - component: {fileID: 1955432822}
   - component: {fileID: 1955432821}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1292,7 +1297,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 567
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1778,6 +1783,11 @@ PrefabInstance:
         type: 3}
       propertyPath: timeForPlayerTurn
       value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
+        type: 3}
+      propertyPath: GroundLayer.m_Bits
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
