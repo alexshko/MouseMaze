@@ -1560,16 +1560,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxForwardSpeed: 10
   MaxBackwardSpeed: 3
-  JumpSpeed: 7.5
-  horizontalCamStandSpeed: 6500
-  horizontalCamMinSpeed: 3500
-  horizontalCamMaxSpeed: 4000
+  JumpSpeed: 11
+  horizontalCamStandSpeed: 5800
+  horizontalCamMinSpeed: 3000
+  horizontalCamMaxSpeed: 3500
   EpsilonAngleCheck: 1
   timeForPlayerTurn: 0.03
   timeForCamTurn: 0.07
   CamRefObject: {fileID: 2363070830430694311}
   MinDistanceOFSwipe: 50
   minAngleJoystickNotUp: 25
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!143 &6459144579177980620
 CharacterController:
   m_ObjectHideFlags: 0

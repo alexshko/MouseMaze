@@ -19,14 +19,18 @@ namespace alexshko.colamazle.Entities.Rocks
             if (t >= 0.9)
             {
                 curTarget = LowerLimit.position;
+                isGoingUp = false;
             }
             if (t <= 0.1)
             {
                 curTarget = UpperLimit.position;
+                isGoingUp = true;
             }
             //float nextT = isGoingUp ? t + speedOfMove * Time.deltaTime : t- speedOfMove * Time.deltaTime;
 
-            rb.MovePosition(Vector3.Lerp(rb.position, curTarget, speedOfMove * portion * Time.deltaTime));
+            //rb.MovePosition(Vector3.Lerp(rb.position, curTarget, speedOfMove * portion * Time.deltaTime
+            float speed = isGoingUp ? speedOfMove : -speedOfMove;
+            rb.MovePosition(Vector3.Lerp(LowerLimit.position, UpperLimit.position, Mathf.Clamp01(t + (speed * Time.deltaTime))));
             //rb.AddForce(new Vector3(0, 1, 0), ForceMode.Force);
         }
 

@@ -92,18 +92,22 @@ namespace alexshko.colamazle.Entities
 
         private void Update()
         {
-            isCharGrounded = isCharOnGround();
-            speedOfGround = GetSpeedOfGround(out overlapingObjectWithVelocityY);
+            //calc if the character is grounded:
+            //if its on a moving ground, need to calculate the offset.
+            //then use the offset to make sure the character is always on top of the moving ground:
+            isCharGrounded = isCharOnGround(out overlapingObjectWithVelocityY);
             CalcMovementToMake();
             CalcCamReferenceObject();
+
+            //make the move:
+            TurnCharacter();
+            MoveCharacter();
+            TurnCamRefObject();
         }
 
         private void FixedUpdate()
         {
 
-            TurnCharacter();
-            MoveCharacter();
-            TurnCamRefObject();
         }
 
         #region functions executed in Update:
@@ -156,14 +160,8 @@ namespace alexshko.colamazle.Entities
 
             if ((isCharGrounded || prevGrounded) && !isJumping)
             {
-                if (!isCharGrounded && prevGrounded)
-                {
-                    Debug.Log("prev grounded");
-                }
                 gravitySpeed = Vector3.zero;
-                MoveToMake += speedOfGround;
             }
-            //gravitySpeed = gravitySpeed + Physics.gravity * Time.deltaTime;
             else
             {
                 gravitySpeed = gravitySpeed + Physics.gravity * Time.deltaTime;
@@ -182,33 +180,55 @@ namespace alexshko.colamazle.Entities
             isAboutToJump = false;
         }
 
-        private bool isCharOnGround()
-        {
-            Vector3 p1 = transform.position;
-
-            return (Physics.CheckSphere(p1, spehreCheckRadius, GroundLayer));
-        }
-
-        private Vector3 GetSpeedOfGround(out float overlapDiff)
+        private bool isCharOnGround(out float overlapDiff)
         {
             Vector3 p1 = transform.position;
             Vector3 p2 = p1 + character.height * transform.up;
+
             overlapDiff = 0;
+            RaycastHit hit;
 
-            if (isCharOnGround())
+            bool isGround = Physics.Raycast(p2, -transform.up, out hit, character.height + spehreCheckRadius, GroundLayer);
+            if (isGround)
             {
-                Debug.Log("found something beneeth");
-
-                Collider[] hits = Physics.OverlapSphere(p1, spehreCheckRadius, GroundLayer);
-                Collider groundObject = hits[0];
-
-                RaycastHit hit;
-                Physics.SphereCast(p2, spehreCheckRadius, -transform.up, out hit, character.height + 5, GroundLayer);
-                overlapDiff = hit.point.y - p1.y;
-                return hits[0].GetComponent<Rigidbody>().velocity;
+                overlapDiff = p1.y - hit.point.y;
             }
-            return Vector3.zero;
+            return isGround;
         }
+
+        //private Vector3 GetSpeedOfGround(out float overlapDiff)
+        //{
+        //    Vector3 p1 = transform.position;
+        //    Vector3 p2 = p1 + character.height * transform.up;
+        //    overlapDiff = 0;
+
+        //    if (isCharOnGround())
+        //    {
+        //        Debug.Log("found something beneeth");
+
+        //        Collider[] hits = Physics.OverlapSphere(p1, spehreCheckRadius, GroundLayer);
+
+        //        if (hits.Length == 0)
+        //        {
+        //            //no ground found:
+        //            return Vector3.zero;
+        //        }
+        //        Collider groundObject = hits[0];
+
+        //        RaycastHit hit;
+        //        //if (Physics.SphereCast(p2, spehreCheckRadius, -transform.up, out hit, character.height + 5, GroundLayer))
+        //        if (Physics.Raycast(p2, -transform.up, out hit, character.height + spehreCheckRadius, GroundLayer))
+        //        {
+        //            overlapDiff = p1.y - hit.point.y;
+        //        }
+        //        Rigidbody objectRB = hits[0].GetComponent<Rigidbody>();
+        //        if (objectRB)
+        //        {
+        //            return hits[0].GetComponent<Rigidbody>().velocity;
+        //        }
+        //    }
+        //    return Vector3.zero;
+        //}
 
         private void CalcCamReferenceObject()
         {
@@ -292,10 +312,12 @@ namespace alexshko.colamazle.Entities
         }
         private void MoveCharacter()
         {
-            if (MoveToMake != Vector3.zero)
+            if (isCharGrounded)
             {
-                character.Move((overlapingObjectWithVelocityY * transform.up + MoveToMake) * Time.deltaTime);
+                character.Move(new Vector3(0, -overlapingObjectWithVelocityY, 0));
             }
+            character.Move(MoveToMake * Time.deltaTime);
+
             //calculate the speed of wich to make the run animation:
             Vector3 MoveToMakeNoGravityWorldSpace = new Vector3(MoveToMake.x, 0, MoveToMake.z);
             MoveToMakeNoGravityLocal = mouseRef.InverseTransformDirection(MoveToMakeNoGravityWorldSpace);
@@ -351,18 +373,5 @@ namespace alexshko.colamazle.Entities
             }
         }
 
-        private void OnCollisionEnter(Collision collision)
-        {
-            //ContactPoint[] contacts = new ContactPoint[collision.contactCount];            
-            //collision.GetContacts(contacts);
-
-            //foreach (var point in contacts)
-            //{
-            //    if (point.point.y > transform.position.y)
-            //    {
-
-            //    }
-            //}
-        }
     }
 }

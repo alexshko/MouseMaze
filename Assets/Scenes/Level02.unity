@@ -828,7 +828,7 @@ PrefabInstance:
     - target: {fileID: 3850517737610516839, guid: 39075536616015f45a22c45b3f037c27,
         type: 3}
       propertyPath: speedOfMove
-      value: 0.8
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 6222560963895057704, guid: 39075536616015f45a22c45b3f037c27,
         type: 3}
@@ -920,6 +920,7 @@ GameObject:
   - component: {fileID: 1718354890}
   - component: {fileID: 1718354889}
   - component: {fileID: 1718354888}
+  - component: {fileID: 1718354892}
   m_Layer: 9
   m_Name: River
   m_TagString: Untagged
@@ -1003,6 +1004,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1718354892
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718354887}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1001 &1743476645
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1411,7 +1428,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2729632149576666}
   m_LocalRotation: {x: 0, y: 0.99999017, z: -0.0044443086, w: 1e-45}
-  m_LocalPosition: {x: 30.95, y: 9.809999, z: 150.11}
+  m_LocalPosition: {x: 31.087, y: 9.805, z: 150.172}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1447,17 +1464,17 @@ PrefabInstance:
     - target: {fileID: 719491760195130403, guid: c15f6c1447faadc4db9889cc1e82d406,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.95
+      value: 31.087
       objectReference: {fileID: 0}
     - target: {fileID: 719491760195130403, guid: c15f6c1447faadc4db9889cc1e82d406,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.809999
+      value: 9.805
       objectReference: {fileID: 0}
     - target: {fileID: 719491760195130403, guid: c15f6c1447faadc4db9889cc1e82d406,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 150.11
+      value: 150.172
       objectReference: {fileID: 0}
     - target: {fileID: 719491760195130403, guid: c15f6c1447faadc4db9889cc1e82d406,
         type: 3}
@@ -1749,70 +1766,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 405925524457234343, guid: 3e79baa318741cf4bafd715f01286b97,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.08044599
-      objectReference: {fileID: 0}
-    - target: {fileID: 405925524457234343, guid: 3e79baa318741cf4bafd715f01286b97,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.044646073
-      objectReference: {fileID: 0}
     - target: {fileID: 6459144579177980617, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
       propertyPath: m_Name
       value: MouseCharacter
-      objectReference: {fileID: 0}
-    - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
-        type: 3}
-      propertyPath: JumpSpeed
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
-        type: 3}
-      propertyPath: timeForCamTurn
-      value: 0.07
-      objectReference: {fileID: 0}
-    - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
-        type: 3}
-      propertyPath: EpsilonAngleCheck
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
-        type: 3}
-      propertyPath: timeForPlayerTurn
-      value: 0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
-        type: 3}
-      propertyPath: GroundLayer.m_Bits
-      value: 512
-      objectReference: {fileID: 0}
-    - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
-        type: 3}
-      propertyPath: MinDistanceOFSwipe
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
-        type: 3}
-      propertyPath: horizontalCamMaxSpeed
-      value: 3500
-      objectReference: {fileID: 0}
-    - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
-        type: 3}
-      propertyPath: horizontalCamMinSpeed
-      value: 3000
-      objectReference: {fileID: 0}
-    - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
-        type: 3}
-      propertyPath: EpsilonPlayerTurnCheck
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6459144579177980618, guid: 3e79baa318741cf4bafd715f01286b97,
-        type: 3}
-      propertyPath: horizontalCamStandSpeed
-      value: 5800
       objectReference: {fileID: 0}
     - target: {fileID: 6459144579177980619, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
@@ -1822,17 +1779,17 @@ PrefabInstance:
     - target: {fileID: 6459144579177980619, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.95
+      value: 31.087
       objectReference: {fileID: 0}
     - target: {fileID: 6459144579177980619, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.41
+      value: 7.405
       objectReference: {fileID: 0}
     - target: {fileID: 6459144579177980619, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 145.61
+      value: 145.672
       objectReference: {fileID: 0}
     - target: {fileID: 6459144579177980619, guid: 3e79baa318741cf4bafd715f01286b97,
         type: 3}
@@ -2052,6 +2009,11 @@ PrefabInstance:
       propertyPath: JoystickPref
       value: 
       objectReference: {fileID: 1587920692144057321}
+    - target: {fileID: 8818442631718159185, guid: 6cdd0ac74b6c46c4b808dc9a2c8bd60d,
+        type: 3}
+      propertyPath: lastDateWorking
+      value: 01/01/2022
+      objectReference: {fileID: 0}
     - target: {fileID: 8818442631718159186, guid: 6cdd0ac74b6c46c4b808dc9a2c8bd60d,
         type: 3}
       propertyPath: m_RootOrder

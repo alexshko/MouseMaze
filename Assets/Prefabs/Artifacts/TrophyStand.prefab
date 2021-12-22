@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2952129984970081448}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TrophyStand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 6128396552800551063}
   - component: {fileID: 2015538562287337759}
   - component: {fileID: 8216373668430707198}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GroundStand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 1049086622938811146}
   - component: {fileID: 7136197612941531487}
   - component: {fileID: 68222493804948848}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Upstand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
