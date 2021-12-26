@@ -1,6 +1,6 @@
 # ColaMaze
  
- A maze game where you are amouse and you have to collect all the cheeses to go to next levels
+ A maze game where you are a mouse and you have to collect all the cheeses to go to next levels
  
  Designed for Android mobile platform.
  
